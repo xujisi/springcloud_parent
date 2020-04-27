@@ -1,0 +1,24 @@
+package com.springcloud.article.dao;
+
+import com.springcloud.article.pojo.Article;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+
+/**
+ * 数据访问接口
+ *
+ * @author Administrator
+ */
+public interface ArticleDao extends JpaRepository<Article, String>, JpaSpecificationExecutor<Article> {
+
+
+    @Modifying
+    @Query(value = "UPDATE tb_article Set state = 1 where id = ?1", nativeQuery = true)
+    public void updateState(String id);
+
+    @Modifying
+    @Query(value = "UPDATE tb_article set thumbup = thumbup +1 where id = ?1", nativeQuery = true)
+    public void addThumbup(String id);
+}

@@ -1,0 +1,16 @@
+server:
+  port: 9003
+spring:
+  application:
+    name: springcloud-qa #指定服务名
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://192.168.128.128:3306/tensquare_qa?useUnicode=true&characterEncoding=utf8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&useSSL=false
+    username: root
+    password: root
+  jpa:
+    database: MySQL
+    show-sql: true
+jwt:
+  config:
+    key: itcast

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="springcloud_article" />
+        <module name="springcloud_base" />
+        <module name="springcloud_common" />
+        <module name="springcloud_eureka" />
+        <module name="springcloud_gathering" />
+        <module name="springcloud_qa" />
+        <module name="springcloud_rabbitmq_test" />
+        <module name="springcloud_recurit" />
+        <module name="springcloud_search" />
+        <module name="springcloud_sms" />
+        <module name="springcloud_spit" />
+        <module name="springcloud_user" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="springcloud_article" target="1.8" />
+      <module name="springcloud_base" target="1.8" />
+      <module name="springcloud_common" target="1.8" />
+      <module name="springcloud_eureka" target="1.8" />
+      <module name="springcloud_gathering" target="1.8" />
+      <module name="springcloud_parent" target="1.8" />
+      <module name="springcloud_qa" target="1.8" />
+      <module name="springcloud_rabbitmq_test" target="1.8" />
+      <module name="springcloud_recurit" target="1.8" />
+      <module name="springcloud_search" target="1.8" />
+      <module name="springcloud_sms" target="1.8" />
+      <module name="springcloud_spit" target="1.8" />
+      <module name="springcloud_user" target="1.8" />
+      <module name="springcloud_usr" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="springcloud_article" options="-parameters" />
+      <module name="springcloud_base" options="-parameters" />
+      <module name="springcloud_common" options="-parameters" />
+      <module name="springcloud_eureka" options="-parameters" />
+      <module name="springcloud_gathering" options="-parameters" />
+      <module name="springcloud_qa" options="-parameters" />
+      <module name="springcloud_rabbitmq_test" options="-parameters" />
+      <module name="springcloud_recurit" options="-parameters" />
+      <module name="springcloud_search" options="-parameters" />
+      <module name="springcloud_sms" options="-parameters" />
+      <module name="springcloud_spit" options="-parameters" />
+      <module name="springcloud_user" options="-parameters" />
+      <module name="springcloud_usr" options="-parameters" />
+    </option>
+  </component>
+</project>

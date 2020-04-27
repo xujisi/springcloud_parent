@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/springcloud_article/springcloud_article.iml" filepath="$PROJECT_DIR$/springcloud_article/springcloud_article.iml" />
+      <module fileurl="file://$PROJECT_DIR$/springcloud_base/springcloud_base.iml" filepath="$PROJECT_DIR$/springcloud_base/springcloud_base.iml" />
+      <module fileurl="file://$PROJECT_DIR$/springcloud_common/springcloud_common.iml" filepath="$PROJECT_DIR$/springcloud_common/springcloud_common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/springcloud_eureka/springcloud_eureka.iml" filepath="$PROJECT_DIR$/springcloud_eureka/springcloud_eureka.iml" />
+      <module fileurl="file://$PROJECT_DIR$/springcloud_gathering/springcloud_gathering.iml" filepath="$PROJECT_DIR$/springcloud_gathering/springcloud_gathering.iml" />
+      <module fileurl="file://$PROJECT_DIR$/springcloud_parent.iml" filepath="$PROJECT_DIR$/springcloud_parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/springcloud_qa/springcloud_qa.iml" filepath="$PROJECT_DIR$/springcloud_qa/springcloud_qa.iml" />
+      <module fileurl="file://$PROJECT_DIR$/springcloud_rabbitmq_test/springcloud_rabbitmq_test.iml" filepath="$PROJECT_DIR$/springcloud_rabbitmq_test/springcloud_rabbitmq_test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/springcloud_recurit/springcloud_recurit.iml" filepath="$PROJECT_DIR$/springcloud_recurit/springcloud_recurit.iml" />
+      <module fileurl="file://$PROJECT_DIR$/springcloud_search/springcloud_search.iml" filepath="$PROJECT_DIR$/springcloud_search/springcloud_search.iml" />
+      <module fileurl="file://$PROJECT_DIR$/springcloud_sms/springcloud_sms.iml" filepath="$PROJECT_DIR$/springcloud_sms/springcloud_sms.iml" />
+      <module fileurl="file://$PROJECT_DIR$/springcloud_spit/springcloud_spit.iml" filepath="$PROJECT_DIR$/springcloud_spit/springcloud_spit.iml" />
+      <module fileurl="file://$PROJECT_DIR$/springcloud_user/springcloud_user.iml" filepath="$PROJECT_DIR$/springcloud_user/springcloud_user.iml" />
+    </modules>
+  </component>
+</project>

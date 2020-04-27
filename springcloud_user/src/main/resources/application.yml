@@ -1,0 +1,21 @@
+server:
+  port: 9008
+spring:
+  application:
+    name: springcloud-user #指定服务名
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://192.168.128.128:3306/tensquare_user?useUnicode=true&characterEncoding=utf8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&useSSL=false
+    username: root
+    password: root
+  jpa:
+    database: MySQL
+    show-sql: true
+  redis:
+    host: 192.168.128.128
+  rabbitmq:
+    host: 192.168.128.128
+jwt:
+  config:
+    key: itcast
+    ttl: 3600000 #一个小时过期时间
