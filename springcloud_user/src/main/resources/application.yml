@@ -19,3 +19,10 @@ jwt:
   config:
     key: itcast
     ttl: 3600000 #一个小时过期时间
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:6868/eureka/
+  instance:
+    prefer-ip-address: true  #跨域访问
+
