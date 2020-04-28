@@ -1,5 +1,6 @@
 package com.springcloud.qa.controller;
 
+import com.springcloud.qa.client.BaseClient;
 import com.springcloud.qa.pojo.Problem;
 import com.springcloud.qa.service.ProblemService;
 import entity.PageResult;
@@ -28,6 +29,22 @@ public class ProblemController {
 
     @Autowired
     private HttpServletRequest request;
+
+    @Autowired
+    private BaseClient baseClient;
+
+
+    /**
+     * 通过springcloud 调用 别的模块的方法
+     *
+     * @param labelId
+     * @return
+     */
+    @GetMapping(value = "/label/{labelId}")
+    public Result findByLabelId(@PathVariable("labelId") String labelId) {
+        return baseClient.findById(labelId);
+    }
+
 
     @GetMapping("/newList/{labelId}/{page}/{size}")
     public Result newList(@PathVariable String labelId, @PathVariable int page, @PathVariable int size) {
