@@ -23,6 +23,7 @@
         <module>springcloud_eureka</module>
         <module>springcloud_eureka</module>
         <module>springcloud_friend</module>
+        <module>springcloud_manager</module>
     </modules>
 
     <packaging>pom</packaging>

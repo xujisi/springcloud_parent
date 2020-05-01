@@ -33,6 +33,20 @@ public class UserController {
     @Autowired
     private JwtUtil jwtUtil;
 
+
+    /**
+     * 更新好友粉丝数和用户关注数
+     *
+     * @param
+     * @return void
+     * @author: 许集思
+     * @date: 2020/5/1 20:33
+     **/
+    @PutMapping("/{userId}/{friendId}/{x}")
+    public void updateFansAndFollowCount(@PathVariable String userId, @PathVariable String friendId, @PathVariable int x) {
+        userService.updateFansAndFollowCount(x, userId, friendId);
+    }
+
     /**
      * 用户登录
      *

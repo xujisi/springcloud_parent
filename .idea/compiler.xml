@@ -12,6 +12,7 @@
         <module name="springcloud_eureka" />
         <module name="springcloud_friend" />
         <module name="springcloud_gathering" />
+        <module name="springcloud_manager" />
         <module name="springcloud_qa" />
         <module name="springcloud_rabbitmq_test" />
         <module name="springcloud_recurit" />
@@ -28,6 +29,7 @@
       <module name="springcloud_eureka" target="1.8" />
       <module name="springcloud_friend" target="1.8" />
       <module name="springcloud_gathering" target="1.8" />
+      <module name="springcloud_manager" target="1.8" />
       <module name="springcloud_parent" target="1.8" />
       <module name="springcloud_qa" target="1.8" />
       <module name="springcloud_rabbitmq_test" target="1.8" />
@@ -47,6 +49,7 @@
       <module name="springcloud_eureka" options="-parameters" />
       <module name="springcloud_friend" options="-parameters" />
       <module name="springcloud_gathering" options="-parameters" />
+      <module name="springcloud_manager" options="-parameters" />
       <module name="springcloud_qa" options="-parameters" />
       <module name="springcloud_rabbitmq_test" options="-parameters" />
       <module name="springcloud_recurit" options="-parameters" />

@@ -12,6 +12,7 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import util.IdWorker;
 import util.JwtUtil;
 
@@ -225,5 +226,23 @@ public class UserService {
         //rabbitTemplate.convertAndSend("sms", map);
         //在控制台显示一遍（方便测试）
         System.out.println("验证码为: " + checkCode);
+    }
+
+
+    /**
+     * 更新粉丝数和关注数
+     *
+     * @param x,@param userId,@param friendId
+     * @return void
+     * @author: 许集思
+     * @date: 2020/5/1 20:35
+     **/
+    @Transactional
+    public void updateFansAndFollowCount(int x, String userId, String friendId) {
+        //更新粉丝数
+        userDao.updateFans(x, friendId);
+        //更新关注数
+        userDao.updateFollows(x, userId);
+
     }
 }
