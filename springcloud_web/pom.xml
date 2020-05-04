@@ -10,13 +10,16 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.springcloud</groupId>
-    <artifactId>springcloud_eureka</artifactId>
-
+    <artifactId>springcloud_web</artifactId>
 
     <dependencies>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-zuul</artifactId>
         </dependency>
         <!--是为了拿到config模块里面的配置文件，这是一个Client端-->
         <dependency>

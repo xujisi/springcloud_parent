@@ -24,6 +24,8 @@
         <module>springcloud_eureka</module>
         <module>springcloud_friend</module>
         <module>springcloud_manager</module>
+        <module>springcloud_web</module>
+        <module>springcloud_config</module>
     </modules>
 
     <packaging>pom</packaging>

@@ -9,6 +9,7 @@
         <module name="springcloud_article" />
         <module name="springcloud_base" />
         <module name="springcloud_common" />
+        <module name="springcloud_config" />
         <module name="springcloud_eureka" />
         <module name="springcloud_friend" />
         <module name="springcloud_gathering" />
@@ -20,12 +21,14 @@
         <module name="springcloud_sms" />
         <module name="springcloud_spit" />
         <module name="springcloud_user" />
+        <module name="springcloud_web" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="springcloud_article" target="1.8" />
       <module name="springcloud_base" target="1.8" />
       <module name="springcloud_common" target="1.8" />
+      <module name="springcloud_config" target="1.8" />
       <module name="springcloud_eureka" target="1.8" />
       <module name="springcloud_friend" target="1.8" />
       <module name="springcloud_gathering" target="1.8" />
@@ -39,6 +42,7 @@
       <module name="springcloud_spit" target="1.8" />
       <module name="springcloud_user" target="1.8" />
       <module name="springcloud_usr" target="1.8" />
+      <module name="springcloud_web" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
@@ -46,6 +50,7 @@
       <module name="springcloud_article" options="-parameters" />
       <module name="springcloud_base" options="-parameters" />
       <module name="springcloud_common" options="-parameters" />
+      <module name="springcloud_config" options="-parameters" />
       <module name="springcloud_eureka" options="-parameters" />
       <module name="springcloud_friend" options="-parameters" />
       <module name="springcloud_gathering" options="-parameters" />
@@ -58,6 +63,7 @@
       <module name="springcloud_spit" options="-parameters" />
       <module name="springcloud_user" options="-parameters" />
       <module name="springcloud_usr" options="-parameters" />
+      <module name="springcloud_web" options="-parameters" />
     </option>
   </component>
 </project>
