@@ -20,8 +20,6 @@
         <module>springcloud_user</module>
         <module>springcloud_sms</module>
         <module>springcloud_eureka</module>
-        <module>springcloud_eureka</module>
-        <module>springcloud_eureka</module>
         <module>springcloud_friend</module>
         <module>springcloud_manager</module>
         <module>springcloud_web</module>
