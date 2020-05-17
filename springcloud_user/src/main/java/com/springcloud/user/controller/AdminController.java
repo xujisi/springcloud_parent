@@ -14,10 +14,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 控制器层
+ * Admin登录控制器
  *
- * @author Administrator
+ * @author: 许集思
+ * @date: 2020/5/17 11:31
  */
+
 @RestController
 @CrossOrigin
 @RequestMapping("/admin")
@@ -31,7 +33,8 @@ public class AdminController {
 
 
     /**
-     * @Title:登录
+     * 登录
+     *
      * @MethodName: login
      * @Param: * @param admin
      * @Return entity.Result
@@ -60,7 +63,7 @@ public class AdminController {
      *
      * @return
      */
-    @RequestMapping(method = RequestMethod.GET)
+    @GetMapping
     public Result findAll() {
         return new Result(true, StatusCode.OK, "查询成功", adminService.findAll());
     }
@@ -71,11 +74,10 @@ public class AdminController {
      * @param id ID
      * @return
      */
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @GetMapping(value = "/{id}")
     public Result findById(@PathVariable String id) {
         return new Result(true, StatusCode.OK, "查询成功", adminService.findById(id));
     }
-
 
     /**
      * 分页+多条件查询
@@ -85,7 +87,7 @@ public class AdminController {
      * @param size      页大小
      * @return 分页结果
      */
-    @RequestMapping(value = "/search/{page}/{size}", method = RequestMethod.POST)
+    @PostMapping(value = "/search/{page}/{size}")
     public Result findSearch(@RequestBody Map searchMap, @PathVariable int page, @PathVariable int size) {
         Page<Admin> pageList = adminService.findSearch(searchMap, page, size);
         return new Result(true, StatusCode.OK, "查询成功", new PageResult<Admin>(pageList.getTotalElements(), pageList.getContent()));
@@ -97,7 +99,7 @@ public class AdminController {
      * @param searchMap
      * @return
      */
-    @RequestMapping(value = "/search", method = RequestMethod.POST)
+    @PostMapping(value = "/search")
     public Result findSearch(@RequestBody Map searchMap) {
         return new Result(true, StatusCode.OK, "查询成功", adminService.findSearch(searchMap));
     }

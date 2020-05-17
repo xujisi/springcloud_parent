@@ -11,6 +11,8 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.*;
 import util.JwtUtil;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -54,7 +56,7 @@ public class UserController {
      * @return
      */
     @PostMapping("/login")
-    public Result login(@RequestBody User user) {
+    public Result login(@RequestBody User user, HttpServletResponse response) {
         User userLogin = userService.login(user.getMobile(), user.getPassword());
         if (userLogin == null) {
             return new Result(false, StatusCode.LOGINERROR, "登录失败");
@@ -64,6 +66,9 @@ public class UserController {
         Map<String, Object> map = new HashMap();
         map.put("token", token);
         map.put("role", "user");
+        //放进Cookies
+        Cookie cookie = new Cookie("token", token);
+        response.addCookie(cookie);
         return new Result(true, StatusCode.OK, "登录成功", map);
     }
 

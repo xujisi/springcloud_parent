@@ -13,6 +13,7 @@
     <artifactId>springcloud_eureka</artifactId>
 
     <dependencies>
+        <!--eureka Server端-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
@@ -26,7 +27,7 @@
 
 
     <!--插件-->
-    <!--上传到私有仓库-->
+    <!--通过maven的方法上传到私有仓库-->
     <build>
         <finalName>app</finalName>
         <plugins>

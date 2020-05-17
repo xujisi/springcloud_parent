@@ -1,6 +1,7 @@
 package com.springcloud.user.interceptor;
 
 import io.jsonwebtoken.Claims;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -16,8 +17,6 @@ import javax.servlet.http.HttpServletResponse;
  * @author: 许集思
  * @date: 2020/4/25 17:43
  */
-
-
 @Component
 public class JwtInterceptor implements HandlerInterceptor {
 
@@ -25,13 +24,12 @@ public class JwtInterceptor implements HandlerInterceptor {
     private JwtUtil jwtUtil;
 
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-
         System.out.println("经过了拦截器");
         //无论如何先放行，然后再操作中判断
         //拦截器只是负责把有请求头中包含token的令牌进行一个解析验证。
         String header = request.getHeader("Authorization");
 
-        if (header != null && !"".equals(header)) {
+        if (StringUtils.isNotEmpty(header)) {
             //如果包含有头信息。就对其进行解析
             if (header.startsWith("Bearer ")) {
                 //得到令牌
@@ -52,7 +50,6 @@ public class JwtInterceptor implements HandlerInterceptor {
                     throw new RuntimeException("令牌不正确!");
                 }
             }
-
         }
         return true;
     }

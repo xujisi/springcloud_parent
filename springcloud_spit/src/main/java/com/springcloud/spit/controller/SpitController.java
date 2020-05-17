@@ -58,7 +58,15 @@ public class SpitController {
     }
 
 
-    @PutMapping("/thumbup/{spitId")
+    /**
+     * 吐槽点赞
+     *
+     * @param spitId
+     * @return entity.Result
+     * @author: 许集思
+     * @date: 2020/5/11 23:27
+     **/
+    @PutMapping("/thumbup/{spitId}")
     public Result thumbup(@PathVariable String spitId) {
         //判断用户是否已经点赞(存进redis）
         String userId = "111";

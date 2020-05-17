@@ -13,12 +13,14 @@
     <artifactId>springcloud_config</artifactId>
 
     <dependencies>
+
+        <!--config Server端-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-config-server</artifactId>
         </dependency>
 
-        <!--通过rabbitmq监听码云上的配置文件是否被改动，改动则rebuild，这里是服务端端-->
+        <!--通过rabbitmq监听码云上的配置文件是否被改动，改动则rebuild，这里是Server端-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-bus</artifactId>

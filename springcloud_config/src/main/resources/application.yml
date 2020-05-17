@@ -14,4 +14,4 @@ management: #暴露触发消息总线的地址
   endpoints:
     web:
       exposure:
-       include: bus-refresh
+        include: bus-refresh #springcloudBus 可以让CONFIG的配置文件及时刷新

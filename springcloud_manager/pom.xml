@@ -13,23 +13,45 @@
     <artifactId>springcloud_manager</artifactId>
 
     <dependencies>
+
+        <!--eureka客户端-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
         </dependency>
+
+        <!--Zuul网关-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-zuul</artifactId>
         </dependency>
+
+        <!--引入公共Springcloud_common模块-->
         <dependency>
             <groupId>com.springcloud</groupId>
             <artifactId>springcloud_common</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+
         <!--是为了拿到config模块里面的配置文件，这是一个Client端-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-config</artifactId>
         </dependency>
+
+        <!-- swagger相关依赖 -->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>2.9.2</version>
+        </dependency>
+
+        <!--swaggerUI相关依赖 -->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>2.9.2</version>
+        </dependency>
+
     </dependencies>
 </project>

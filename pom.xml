@@ -45,9 +45,10 @@
         <spring-cloud.version>Finchley.M9</spring-cloud.version>
     </properties>
 
+    <!--用dependencyManagement可以锁定版本-->
     <dependencyManagement>
         <dependencies>
-            <!-- springCloud -->
+            <!-- springCloud相关依赖 -->
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
@@ -58,6 +59,7 @@
         </dependencies>
     </dependencyManagement>
 
+    <!--导入父工程相关依赖-->
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -68,8 +70,11 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+
+
     </dependencies>
 
+    <!--仓库-->
     <repositories>
         <repository>
             <id>spring-snapshots</id>
@@ -89,6 +94,7 @@
         </repository>
     </repositories>
 
+    <!--仓库-->
     <pluginRepositories>
         <pluginRepository>
             <id>spring-snapshots</id>

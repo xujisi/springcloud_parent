@@ -22,7 +22,7 @@ public class Article implements Serializable {
     @Field(index = true, analyzer = "ik_max_word", searchAnalyzer = "ik_max_word")
     private String content;
 
-    private String status;//审核状态
+    private String state;//审核状态
 
     public String getId() {
         return id;
@@ -48,11 +48,11 @@ public class Article implements Serializable {
         this.content = content;
     }
 
-    public String getStatus() {
-        return status;
+    public String getState() {
+        return state;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setState(String state) {
+        this.state = state;
     }
 }

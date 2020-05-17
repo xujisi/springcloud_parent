@@ -2,9 +2,10 @@ package com.springcloud.spit.pojo;
 
 import org.springframework.data.annotation.Id;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Spit {
+public class Spit implements Serializable {
 
     @Id
     private String _id;

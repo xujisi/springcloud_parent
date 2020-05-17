@@ -44,7 +44,7 @@ public class JwtUtil {
 
     /**
      * 生成JWT
-     *
+     * id:id subject:主题 roles：salt
      * @param id
      * @param subject
      * @return

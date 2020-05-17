@@ -95,8 +95,8 @@ public class ArticleService {
         if (article == null) {
             //从数据库中查询
             article = articleDao.findById(id).get();
-            //存入缓存中
-            redisTemplate.opsForValue().set("article_" + id, article, 10, TimeUnit.SECONDS);
+            //存入缓存中(设置一天的缓存时间)
+            redisTemplate.opsForValue().set("article_" + id, article, 1, TimeUnit.DAYS);
         }
         return article;
     }

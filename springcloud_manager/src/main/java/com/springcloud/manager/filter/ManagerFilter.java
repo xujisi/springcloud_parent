@@ -12,7 +12,7 @@ import util.JwtUtil;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * 过滤器
+ * 过滤器继承ZuulFiler实现网关
  *
  * @author: 许集思
  * @date: 2020/5/2 10:50
@@ -102,6 +102,7 @@ public class ManagerFilter extends ZuulFilter {
                     if (roles.equals("admin")) {
                         //头信息继续传下去，本来过网关是不传的，并且放行
                         currentContext.addZuulResponseHeader("Authorization", header);
+                        System.out.println("token 验证通过，添加了头信息" + header);
                         return null;
                     }
                 } catch (Exception e) {

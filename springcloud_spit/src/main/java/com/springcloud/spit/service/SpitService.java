@@ -3,6 +3,7 @@ package com.springcloud.spit.service;
 
 import com.springcloud.spit.dao.SpitDao;
 import com.springcloud.spit.pojo.Spit;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -47,8 +48,8 @@ public class SpitService {
         spit.setThumbup(0);//点赞数
         spit.setComment(0);//回复数
         spit.setState("1");//状态
-        //如果当前当前添加的吐槽有父节点，那么父节点的吐槽回复数+1
-        if (spit.getParentid() != null && !"".equals(spit.getParentid())) {
+        //如果当前添加的吐槽有父节点，那么父节点的吐槽回复数+1
+        if (StringUtils.isNotEmpty(spit.getParentid())) {
             Query query = new Query();
             query.addCriteria(Criteria.where("_id").is(spit.getParentid()));
             Update update = new Update();
@@ -72,6 +73,15 @@ public class SpitService {
         return spitDao.findByParentid(parentid, pageable);
     }
 
+
+    /**
+     * 点赞
+     *
+     * @param spidId
+     * @return void
+     * @author: 许集思
+     * @date: 2020/5/11 23:27
+     **/
     public void thumbup(String spidId) {
         //效率有问题
         //Spit spit = spitDao.findById(spidId).get();

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 
 /**
- * 标识如果出错则往熔断器自定义Impl调
+ * 标识如果出错则往熔断器自定义Impl调（fallback)
  *
  * @author: 许集思
  * @date: 2020/5/1 23:44
@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 public interface BaseClient {
 
     @GetMapping(value = "/label/{labelId}")
-    public Result findById(@PathVariable("labelId") String labelId);
+    Result findById(@PathVariable("labelId") String labelId);
 
 
 }

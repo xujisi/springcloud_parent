@@ -1,6 +1,6 @@
 package com.springcloud.search.service;
 
-import com.springcloud.search.dao.ArticleDao;
+import com.springcloud.search.dao.SearchDao;
 import com.springcloud.search.pojo.Article;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -14,20 +14,29 @@ import org.springframework.transaction.annotation.Transactional;
 public class ArticleService {
 
     @Autowired
-    private ArticleDao articleDao;
+    private SearchDao searchDao;
 
     //    @Autowired
     //    private IdWorker idWorker;
 
     public void save(Article article) {
         //article.setId(idWorker.nextId() + "");
-        articleDao.save(article);
+        searchDao.save(article);
     }
 
+    /**
+     * 根据keyworks模糊查询
+     *
+     * @param key,@param page,@param size
+     * @return org.springframework.data.domain.Page<com.springcloud.search.pojo.Article>
+     * @author: 许集思
+     * @date: 2020/5/13 21:46
+     **/
     public Page<Article> findByKey(String key, int page, int size) {
         Pageable pageable = PageRequest.of(page - 1, size);
-        return articleDao.findByTitleLikeOrContentLike(key, key, pageable);
+        return searchDao.findByTitleLikeOrContentLike(key, key, pageable);
     }
+
 
 
 }

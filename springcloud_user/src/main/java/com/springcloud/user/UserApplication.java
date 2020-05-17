@@ -21,6 +21,14 @@ public class UserApplication {
         return new IdWorker(1, 1);
     }
 
+    /**
+     * 加密方法
+     *
+     * @param
+     * @return org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
+     * @author: 许集思
+     * @date: 2020/5/17 11:20
+     **/
     @Bean
     public BCryptPasswordEncoder encoder() {
         return new BCryptPasswordEncoder();

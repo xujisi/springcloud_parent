@@ -1,0 +1,7 @@
+spring:
+  cloud:
+    config:
+      name: gathering
+      profile: dev
+      label: master
+      uri: http://192.168.128.128:12000  
