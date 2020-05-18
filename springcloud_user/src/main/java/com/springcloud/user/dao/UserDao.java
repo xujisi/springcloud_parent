@@ -12,13 +12,13 @@ import org.springframework.data.jpa.repository.Query;
  * @author Administrator
  */
 public interface UserDao extends JpaRepository<User, String>, JpaSpecificationExecutor<User> {
-    public User findByMobile(String mobile);
+    User findByMobile(String mobile);
 
     @Modifying
     @Query(value = "update tb_user set fanscount =  fanscount + ? where id = ?", nativeQuery = true)
-    public void updateFans(int x, String friendId);
+    void updateFans(int x, String friendId);
 
     @Modifying
     @Query(value = "update tb_user set followcount =  followcount + ? where id = ?", nativeQuery = true)
-    public void updateFollows(int x, String userId);
+    void updateFollows(int x, String userId);
 }

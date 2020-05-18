@@ -5,6 +5,8 @@ import com.springcloud.user.service.UserService;
 import entity.PageResult;
 import entity.Result;
 import entity.StatusCode;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -24,6 +26,8 @@ import java.util.Map;
 @RestController
 @CrossOrigin
 @RequestMapping("/user")
+
+@Api(tags = "用户模块接口", description = "用户模块接口")
 public class UserController {
 
     @Autowired
@@ -75,6 +79,7 @@ public class UserController {
     /**
      * 发送短信验证码
      */
+    @ApiOperation(value = "发送短信验证码")
     @PostMapping("/sendsms/{mobile}")
     public Result sendSms(@PathVariable String mobile) {
         userService.sendSms(mobile);

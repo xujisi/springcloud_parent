@@ -5,6 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 import org.springframework.context.annotation.Bean;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 import util.JwtUtil;
 
 /**
@@ -18,6 +19,8 @@ import util.JwtUtil;
 @SpringBootApplication
 @EnableEurekaClient
 @EnableZuulProxy
+@EnableSwagger2
+
 public class ManagerApplication {
     public static void main(String[] args) {
         SpringApplication.run(ManagerApplication.class);

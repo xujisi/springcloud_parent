@@ -5,3 +5,14 @@ spring:
       profile: dev
       label: master
       uri: http://192.168.128.128:12000
+
+
+
+#server:
+#  port: 6868
+#eureka:
+#  client:
+#    register-with-eureka: false
+#    fetch-registry: false
+#    service-url:
+#      defaultZone: http://localhost:${server.port}/eureka/
