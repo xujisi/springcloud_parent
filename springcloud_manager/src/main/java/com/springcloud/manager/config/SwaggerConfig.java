@@ -5,7 +5,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
-import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
 import springfox.documentation.service.Contact;
 import springfox.documentation.spi.DocumentationType;
@@ -14,10 +13,10 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @Configuration
 @EnableSwagger2
-
 //开启Swagger2
 public class SwaggerConfig {
 
+    //是否启动swagger2
     private boolean enable = true;
 
     //配置了Swagger2的Docket的Bean实例
@@ -25,44 +24,19 @@ public class SwaggerConfig {
     public Docket docket() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
-                //enable：是否启动Swagger
                 .enable(enable)
                 .select()
-                //RequestHandlerSelectors 配置要扫描接口的方式
-                //basePackage:指定要扫描的包
-                //any():扫描全部
-                //none();不扫描
-                //withClassAnnotation:扫描了类上的注解
-                //withMethodAnnotation:扫描了方法上的注解
-                .apis(RequestHandlerSelectors.basePackage("com....."))
-                //paths:过滤什么路径
                 .paths(PathSelectors.ant("com...."))
                 .build().apiInfo(apiInfo());
     }
 
-
-    //配置Swagger信息=apiinfo
-//    private ApiInfo apiInfo() {
-//
-//        //作者信息
-//        Contact contact = new Contact("许集思", "www.baidu.com", "562683719@qq.com");
-//
-//        return new ApiInfo(
-//                "Xujisi的Swagger",
-//                "大家好，我是你们的父亲",
-//                "1.0",
-//                "urn:tos",
-//                contact,
-//                "Apache 2.0",
-//                "http://www.apache.org/licenses/LICENSE-2.0",
-//                new ArrayList());
-//    }
+    //配置个人作者信息
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("分布式购物系统")
-                .description("购物系统接口文档说明")
-                .termsOfServiceUrl("http://192.168.128.128:9011")
-                .contact(new Contact("vker", "", "6492178@gmail.com"))
+                .title("Manager's Swagger")
+                .description("API接口文档说明")
+                .termsOfServiceUrl("http://www.baidu.com")
+                .contact(new Contact("xjs", "", "562683719@qq.com"))
                 .version("1.0")
                 .build();
     }

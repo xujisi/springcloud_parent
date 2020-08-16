@@ -36,21 +36,26 @@ public class AdminService {
     private BCryptPasswordEncoder encoder;
 
     /**
-     * 查询全部列表
+     * 查询全部Admin用户
      *
-     * @return
-     */
+     * @param
+     * @return java.util.List<com.springcloud.user.pojo.Admin>
+     * @author: 许集思
+     * @date: 2020/5/24 17:05
+     **/
     public List<Admin> findAll() {
         return adminDao.findAll();
     }
 
 
     /**
-     * 登录
+     * Admin登录
      *
      * @param admin
-     * @return
-     */
+     * @return com.springcloud.user.pojo.Admin
+     * @author: 许集思
+     * @date: 2020/5/24 17:05
+     **/
     public Admin login(Admin admin) {
 
         //先根据用户名查询对象
@@ -64,13 +69,13 @@ public class AdminService {
     }
 
     /**
-     * 条件查询+分页
+     * 分页+多条件查询Admin用户
      *
-     * @param whereMap
-     * @param page
-     * @param size
-     * @return
-     */
+     * @param whereMap,@param page,@param size
+     * @return org.springframework.data.domain.Page<com.springcloud.user.pojo.Admin>
+     * @author: 许集思
+     * @date: 2020/5/24 17:05
+     **/
     public Page<Admin> findSearch(Map whereMap, int page, int size) {
         Specification<Admin> specification = createSpecification(whereMap);
         PageRequest pageRequest = PageRequest.of(page - 1, size);
@@ -79,31 +84,38 @@ public class AdminService {
 
 
     /**
-     * 条件查询
+     * 根据条件查询Admin用户
      *
      * @param whereMap
-     * @return
-     */
+     * @return java.util.List<com.springcloud.user.pojo.Admin>
+     * @author: 许集思
+     * @date: 2020/5/24 17:05
+     **/
     public List<Admin> findSearch(Map whereMap) {
         Specification<Admin> specification = createSpecification(whereMap);
         return adminDao.findAll(specification);
     }
 
     /**
-     * 根据ID查询实体
+     * 根据ID查询Admin用户
      *
      * @param id
-     * @return
-     */
+     * @return com.springcloud.user.pojo.Admin
+     * @author: 许集思
+     * @date: 2020/5/24 17:05
+     **/
     public Admin findById(String id) {
         return adminDao.findById(id).get();
     }
 
     /**
-     * 增加
+     * 增加Admin用户
      *
      * @param admin
-     */
+     * @return void
+     * @author: 许集思
+     * @date: 2020/5/24 17:05
+     **/
     public void add(Admin admin) {
         admin.setId(idWorker.nextId() + "");
         //加密
@@ -112,19 +124,24 @@ public class AdminService {
     }
 
     /**
-     * 修改
+     * 修改Admin用户
      *
      * @param admin
-     */
+     * @return void
+     * @author: 许集思
+     * @date: 2020/5/24 17:04
+     **/
     public void update(Admin admin) {
         adminDao.save(admin);
     }
 
     /**
-     * 删除
+     * 删除Admin用户
      *
-     * @param id
-     */
+     * @return void
+     * @author: 许集思
+     * @date: 2020/5/24 17:04
+     **/
     public void deleteById(String id) {
         adminDao.deleteById(id);
     }

@@ -5,11 +5,14 @@ import com.springcloud.friend.service.FriendService;
 import entity.Result;
 import entity.StatusCode;
 import io.jsonwebtoken.Claims;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 
+@Api(tags = "交友微服务API")
 @RestController
 @RequestMapping("/friend")
 public class FriendController {
@@ -25,13 +28,14 @@ public class FriendController {
     private UserClient userClient;
 
     /**
-     * 添加好友控制层
+     * 添加好友
      *
      * @param friendId,@param type
      * @return entity.Result
      * @author: 许集思
-     * @date: 2020/5/1 20:59
+     * @date: 2020/5/24 16:18
      **/
+    @ApiOperation(value = "添加好友", notes = "添加好友")
     @PutMapping("/like/{friendId}/{type}")
     public Result addFriend(@PathVariable String friendId, @PathVariable String type) {
         //验证是否登录,并且拿到用户Id
@@ -72,13 +76,14 @@ public class FriendController {
 
 
     /**
-     * 删除好友控制层
+     * 删除好友
      *
      * @param friendId
      * @return entity.Result
      * @author: 许集思
-     * @date: 2020/5/1 21:08
+     * @date: 2020/5/24 16:18
      **/
+    @ApiOperation(value = "删除好友", notes = "删除好友")
     @DeleteMapping("/{friendId}")
     public Result addFriend(@PathVariable String friendId) {
         //验证是否登录,并且拿到用户Id

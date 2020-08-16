@@ -1,7 +1,20 @@
+################服务器#################
+#server:
+#  port: 9007
+#spring:
+#  application:
+#    name: springcloud-search #微服务名
+#  data:
+#    elasticsearch:
+#      cluster-nodes: 192.168.128.128:9300  #es端口号
+
+
+##############本地#################
+server:
+  port: 9007
 spring:
-  cloud:
-    config:
-      name: search
-      profile: dev
-      label: master
-      uri: http://192.168.128.128:12000  
+  application:
+    name: search #微服务名
+  data:
+    elasticsearch:
+      cluster-nodes: 192.168.128.128:9300  #es端口号

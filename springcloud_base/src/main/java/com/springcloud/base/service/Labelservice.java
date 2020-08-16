@@ -1,4 +1,4 @@
-package com.springcloud.base;
+package com.springcloud.base.service;
 
 import com.springcloud.base.dao.LabelDao;
 import com.springcloud.base.pojo.Label;
@@ -28,28 +28,76 @@ public class Labelservice {
     @Autowired
     private IdWorker idWorker;
 
+    /**
+     * 查询所有标签
+     *
+     * @param
+     * @return entity.Result
+     * @author: 许集思
+     * @date: 2020/5/24 15:33
+     **/
     public List<Label> findAll() {
         return labelDao.findAll();
     }
 
+    /**
+     * 根据ID查找标签
+     *
+     * @param id
+     * @return com.springcloud.base.pojo.Label
+     * @author: 许集思
+     * @date: 2020/5/24 15:36
+     **/
     public Label findById(String id) {
         return labelDao.findById(id).get();
     }
 
+    /**
+     * 新增标签
+     *
+     * @param label
+     * @return void
+     * @author: 许集思
+     * @date: 2020/5/24 15:36
+     **/
     public void save(Label label) {
         label.setId(idWorker.nextId() + "");
         labelDao.save(label);
     }
 
+    /**
+     * 修改标签
+     *
+     * @param label
+     * @return void
+     * @author: 许集思
+     * @date: 2020/5/24 15:36
+     **/
     public void update(Label label) {
         labelDao.save(label);
     }
 
+    /**
+     * 删除标签
+     *
+     * @param id
+     * @return void
+     * @author: 许集思
+     * @date: 2020/5/24 15:36
+     **/
     public void deleteById(String id) {
         labelDao.deleteById(id);
     }
 
 
+    /**
+     * 根据条件查询标签
+     *
+     * @param label
+     * @return java.util.List<com.springcloud.base.pojo.Label>
+     * @author: 许集思
+     * @date: 2020/5/24 15:36
+     **/
     public List<Label> findSearch(Label label) {
         return labelDao.findAll(new Specification<Label>() {
             /**
@@ -80,6 +128,14 @@ public class Labelservice {
         });
     }
 
+    /**
+     * 根据条件+分页查询标签
+     *
+     * @param label,@param page,@param size
+     * @return org.springframework.data.domain.Page<com.springcloud.base.pojo.Label>
+     * @author: 许集思
+     * @date: 2020/5/24 15:36
+     **/
     public Page<Label> pageQuery(Label label, int page, int size) {
         Pageable pageable = PageRequest.of(page - 1, size);
         return labelDao.findAll(new Specification<Label>() {

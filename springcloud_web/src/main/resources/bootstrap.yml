@@ -1,7 +1,34 @@
+################服务器#################
+#spring:
+#  cloud:
+#    config:
+#      name: web
+#      profile: dev
+#      label: master
+#      uri: http://192.168.128.128:12000
+
+
+##############本地#################
+#这是一个前台网关 可以直接调用别的微服务模块
+server:
+  port: 9012
 spring:
-  cloud:
-    config:
-      name: web
-      profile: dev
-      label: master
-      uri: http://192.168.128.128:12000
+  application:
+    name: web
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:6868/eureka/
+  instance:
+    prefer-ip-address: true  #跨域访问
+zuul:
+  routes:
+    springcloud-base:
+      path: /base/**
+      serviceId: base
+    springcloud-user:
+      path: /user/**
+      serviceId: user
+    springcloud-qa:
+      path: /qa/**
+      serviceId: qa

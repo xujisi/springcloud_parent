@@ -56,6 +56,7 @@ public class IdWorker {
         this.datacenterId = getDatacenterId(maxDatacenterId);
         this.workerId = getMaxWorkerId(datacenterId, maxWorkerId);
     }
+
     /**
      * @param workerId
      *            工作机器ID
@@ -72,6 +73,7 @@ public class IdWorker {
         this.workerId = workerId;
         this.datacenterId = datacenterId;
     }
+
     /**
      * 获取下一个ID
      *

@@ -18,9 +18,10 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 服务层
+ * 频道Service层
  *
- * @author Administrator
+ * @author: 许集思
+ * @date: 2020/5/23 23:48
  */
 @Service
 public class ChannelService {
@@ -32,23 +33,26 @@ public class ChannelService {
     private IdWorker idWorker;
 
     /**
-     * 查询全部列表
+     * 查询全部频道
      *
-     * @return
-     */
+     * @param
+     * @return java.util.List<com.springcloud.article.pojo.Channel>
+     * @author: 许集思
+     * @date: 2020/5/23 23:49
+     **/
     public List<Channel> findAll() {
         return channelDao.findAll();
     }
 
 
     /**
-     * 条件查询+分页
+     * 分页+多条件查询频道
      *
-     * @param whereMap
-     * @param page
-     * @param size
-     * @return
-     */
+     * @param whereMap,@param page,@param size
+     * @return org.springframework.data.domain.Page<com.springcloud.article.pojo.Channel>
+     * @author: 许集思
+     * @date: 2020/5/23 23:49
+     **/
     public Page<Channel> findSearch(Map whereMap, int page, int size) {
         Specification<Channel> specification = createSpecification(whereMap);
         PageRequest pageRequest = PageRequest.of(page - 1, size);
@@ -57,50 +61,63 @@ public class ChannelService {
 
 
     /**
-     * 条件查询
+     * 根据条件查询频道
      *
      * @param whereMap
-     * @return
-     */
+     * @return java.util.List<com.springcloud.article.pojo.Channel>
+     * @author: 许集思
+     * @date: 2020/5/23 23:49
+     **/
     public List<Channel> findSearch(Map whereMap) {
         Specification<Channel> specification = createSpecification(whereMap);
         return channelDao.findAll(specification);
     }
 
     /**
-     * 根据ID查询实体
+     * 根据ID查询频道
      *
      * @param id
-     * @return
-     */
+     * @return com.springcloud.article.pojo.Channel
+     * @author: 许集思
+     * @date: 2020/5/23 23:49
+     **/
     public Channel findById(String id) {
         return channelDao.findById(id).get();
     }
 
     /**
-     * 增加
+     * 增加频道
      *
      * @param channel
-     */
+     * @return void
+     * @author: 许集思
+     * @date: 2020/5/23 23:49
+     **/
     public void add(Channel channel) {
         channel.setId(idWorker.nextId() + "");
         channelDao.save(channel);
     }
 
     /**
-     * 修改
+     * 修改频道
      *
      * @param channel
-     */
+     * @return void
+     * @author: 许集思
+     * @date: 2020/5/23 23:49
+     **/
     public void update(Channel channel) {
         channelDao.save(channel);
     }
 
     /**
-     * 删除
+     * 删除频道
      *
      * @param id
-     */
+     * @return void
+     * @author: 许集思
+     * @date: 2020/5/23 23:49
+     **/
     public void deleteById(String id) {
         channelDao.deleteById(id);
     }
@@ -109,12 +126,12 @@ public class ChannelService {
      * 动态条件构建
      *
      * @param searchMap
-     * @return
-     */
+     * @return org.springframework.data.jpa.domain.Specification<com.springcloud.article.pojo.Channel>
+     * @author: 许集思
+     * @date: 2020/5/23 23:50
+     **/
     private Specification<Channel> createSpecification(Map searchMap) {
-
         return new Specification<Channel>() {
-
             @Override
             public Predicate toPredicate(Root<Channel> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
                 List<Predicate> predicateList = new ArrayList<Predicate>();
@@ -130,12 +147,8 @@ public class ChannelService {
                 if (searchMap.get("state") != null && !"".equals(searchMap.get("state"))) {
                     predicateList.add(cb.like(root.get("state").as(String.class), "%" + (String) searchMap.get("state") + "%"));
                 }
-
                 return cb.and(predicateList.toArray(new Predicate[predicateList.size()]));
-
             }
         };
-
     }
-
 }

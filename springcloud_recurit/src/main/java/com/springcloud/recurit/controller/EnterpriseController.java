@@ -5,6 +5,8 @@ import com.springcloud.recurit.service.EnterpriseService;
 import entity.PageResult;
 import entity.Result;
 import entity.StatusCode;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
@@ -13,54 +15,73 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 控制器层
+ * 企业控制器层
  *
- * @author Administrator
+ * @author: 许集思
+ * @date: 2020/5/24 16:46
  */
+
 @RestController
 @CrossOrigin
 @RequestMapping("/enterprise")
+@Api(tags = "企业微服务（标签）API")
 public class EnterpriseController {
 
     @Autowired
     private EnterpriseService enterpriseService;
 
+    /**
+     * 查询热门企业
+     *
+     * @param
+     * @return entity.Result
+     * @author: 许集思
+     * @date: 2020/5/24 16:46
+     **/
     @GetMapping("/search/hotlist")
+    @ApiOperation(value = "查询热门企业", notes = "查询热门企业")
     public Result hotlist() {
         List<Enterprise> list = enterpriseService.hotList("1");
         return new Result(true, StatusCode.OK, "查询成功", list);
     }
 
     /**
-     * 查询全部数据
+     * 查询全部企业
      *
-     * @return
-     */
+     * @param
+     * @return entity.Result
+     * @author: 许集思
+     * @date: 2020/5/24 16:47
+     **/
+    @ApiOperation(value = "查询全部企业", notes = "查询全部企业")
     @RequestMapping(method = RequestMethod.GET)
     public Result findAll() {
         return new Result(true, StatusCode.OK, "查询成功", enterpriseService.findAll());
     }
 
     /**
-     * 根据ID查询
+     * 根据ID查询企业
      *
-     * @param id ID
-     * @return
-     */
+     * @param id
+     * @return entity.Result
+     * @author: 许集思
+     * @date: 2020/5/24 16:47
+     **/
+    @ApiOperation(value = "根据ID查询企业", notes = "根据ID查询企业")
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public Result findById(@PathVariable String id) {
         return new Result(true, StatusCode.OK, "查询成功", enterpriseService.findById(id));
     }
 
-
     /**
-     * 分页+多条件查询
+     * 分页+多条件查询企业
      *
-     * @param searchMap 查询条件封装
-     * @param page      页码
-     * @param size      页大小
-     * @return 分页结果
-     */
+     * @param searchMap,@param page,@param size
+     * @return entity.Result
+     * @author: 许集思
+     * @date: 2020/5/24 16:48
+     **/
+    @ApiOperation(value = "分页+多条件查询企业", notes = "分页+多条件查询企业")
     @RequestMapping(value = "/search/{page}/{size}", method = RequestMethod.POST)
     public Result findSearch(@RequestBody Map searchMap, @PathVariable int page, @PathVariable int size) {
         Page<Enterprise> pageList = enterpriseService.findSearch(searchMap, page, size);
@@ -68,21 +89,28 @@ public class EnterpriseController {
     }
 
     /**
-     * 根据条件查询
+     * 根据条件查询企业
      *
      * @param searchMap
-     * @return
-     */
+     * @return entity.Result
+     * @author: 许集思
+     * @date: 2020/5/24 16:48
+     **/
+    @ApiOperation(value = "根据条件查询企业", notes = "根据条件查询企业")
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     public Result findSearch(@RequestBody Map searchMap) {
         return new Result(true, StatusCode.OK, "查询成功", enterpriseService.findSearch(searchMap));
     }
 
     /**
-     * 增加
+     * 新增企业
      *
      * @param enterprise
-     */
+     * @return entity.Result
+     * @author: 许集思
+     * @date: 2020/5/24 16:48
+     **/
+    @ApiOperation(value = "新增企业", notes = "新增企业")
     @RequestMapping(method = RequestMethod.POST)
     public Result add(@RequestBody Enterprise enterprise) {
         enterpriseService.add(enterprise);
@@ -90,10 +118,14 @@ public class EnterpriseController {
     }
 
     /**
-     * 修改
+     * 修改企业信息
      *
-     * @param enterprise
-     */
+     * @param enterprise,@param id
+     * @return entity.Result
+     * @author: 许集思
+     * @date: 2020/5/24 16:48
+     **/
+    @ApiOperation(value = "修改企业信息", notes = "修改企业信息")
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public Result update(@RequestBody Enterprise enterprise, @PathVariable String id) {
         enterprise.setId(id);
@@ -102,10 +134,13 @@ public class EnterpriseController {
     }
 
     /**
-     * 删除
+     * 删除企业
      *
      * @param id
-     */
+     * @return entity.Result
+     * @author: 许集思
+     * @date: 2020/5/24 16:49
+     **/
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public Result delete(@PathVariable String id) {
         enterpriseService.deleteById(id);

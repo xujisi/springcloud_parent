@@ -32,14 +32,37 @@ public class SpitService {
     @Autowired
     private MongoTemplate mongoTemplate;
 
+    /**
+     * 查询所有吐槽
+     *
+     * @param
+     * @return java.util.List<com.springcloud.spit.pojo.Spit>
+     * @author: 许集思
+     * @date: 2020/5/24 17:01
+     **/
     public List<Spit> findAll() {
         return spitDao.findAll();
     }
 
+    /**
+     * 根据ID查询吐槽
+     *
+     * @return com.springcloud.spit.pojo.Spit
+     * @author: 许集思
+     * @date: 2020/5/24 17:01
+     **/
     public Spit findById(String id) {
         return spitDao.findById(id).get();
     }
 
+    /**
+     * 修改新增吐槽
+     *
+     * @param spit
+     * @return void
+     * @author: 许集思
+     * @date: 2020/5/24 17:01
+     **/
     public void save(Spit spit) {
         spit.set_id(idWorker.nextId() + "");
         spit.setPublishtime(new Date());//发布日期
@@ -64,10 +87,26 @@ public class SpitService {
         spitDao.save(spit);
     }
 
+    /**
+     * 删除吐槽
+     *
+     * @param id
+     * @return void
+     * @author: 许集思
+     * @date: 2020/5/24 17:00
+     **/
     public void deleteById(String id) {
         spitDao.deleteById(id);
     }
 
+    /**
+     * 查询上级吐槽
+     *
+     * @param parentid,@param page,@param size
+     * @return org.springframework.data.domain.Page<com.springcloud.spit.pojo.Spit>
+     * @author: 许集思
+     * @date: 2020/5/24 17:00
+     **/
     public Page<Spit> findByParentid(String parentid, int page, int size) {
         Pageable pageable = PageRequest.of(page - 1, size);
         return spitDao.findByParentid(parentid, pageable);
@@ -75,12 +114,12 @@ public class SpitService {
 
 
     /**
-     * 点赞
+     * 吐槽点赞
      *
      * @param spidId
      * @return void
      * @author: 许集思
-     * @date: 2020/5/11 23:27
+     * @date: 2020/5/24 17:00
      **/
     public void thumbup(String spidId) {
         //效率有问题

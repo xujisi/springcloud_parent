@@ -1,18 +1,21 @@
-spring:
-  cloud:
-    config:
-      name: eureka
-      profile: dev
-      label: master
-      uri: http://192.168.128.128:12000
+###############服务器#################
+#spring:
+#  cloud:
+#    config:
+#      name: eureka
+#      profile: dev
+#      label: master
+#      uri: http://192.168.128.128:12000
 
 
-
-#server:
-#  port: 6868
-#eureka:
-#  client:
-#    register-with-eureka: false
-#    fetch-registry: false
-#    service-url:
-#      defaultZone: http://localhost:${server.port}/eureka/
+###############本地#################
+server:
+  port: 6868
+eureka:
+  client:
+    #是否将自己注册到Eureka Server上，默认为true
+    register-with-eureka: false
+    #是否从Eureka Server上获取注册信息，默认为true
+    fetch-registry: false
+    service-url:
+      defaultZone: http://localhost:${server.port}/eureka/

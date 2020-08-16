@@ -5,6 +5,8 @@ import com.springcloud.user.service.AdminService;
 import entity.PageResult;
 import entity.Result;
 import entity.StatusCode;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
@@ -23,6 +25,7 @@ import java.util.Map;
 @RestController
 @CrossOrigin
 @RequestMapping("/admin")
+@Api(tags = "管理员登录微服务API")
 public class AdminController {
 
     @Autowired
@@ -33,7 +36,7 @@ public class AdminController {
 
 
     /**
-     * 登录
+     * Admin登录
      *
      * @MethodName: login
      * @Param: * @param admin
@@ -42,6 +45,7 @@ public class AdminController {
      * @author: 许集思
      * @date: 2020/4/25 14:44
      */
+    @ApiOperation(value = "Admin登录", notes = "Admin登录")
     @PostMapping(value = "/login")
     public Result login(@RequestBody Admin admin) {
         Admin adminLogin = adminService.login(admin);
@@ -59,34 +63,42 @@ public class AdminController {
     }
 
     /**
-     * 查询全部数据
+     * 查询全部Admin用户
      *
-     * @return
-     */
+     * @param
+     * @return entity.Result
+     * @author: 许集思
+     * @date: 2020/5/24 17:02
+     **/
+    @ApiOperation(value = "查询全部Admin用户", notes = "查询全部Admin用户")
     @GetMapping
     public Result findAll() {
         return new Result(true, StatusCode.OK, "查询成功", adminService.findAll());
     }
 
     /**
-     * 根据ID查询
+     * 根据ID查询Admin用户
      *
-     * @param id ID
-     * @return
-     */
+     * @param id
+     * @return entity.Result
+     * @author: 许集思
+     * @date: 2020/5/24 17:03
+     **/
+    @ApiOperation(value = "根据ID查询Admin用户", notes = "根据ID查询Admin用户")
     @GetMapping(value = "/{id}")
     public Result findById(@PathVariable String id) {
         return new Result(true, StatusCode.OK, "查询成功", adminService.findById(id));
     }
 
     /**
-     * 分页+多条件查询
+     * 分页+多条件查询Admin用户
      *
-     * @param searchMap 查询条件封装
-     * @param page      页码
-     * @param size      页大小
-     * @return 分页结果
-     */
+     * @param searchMap,@param page,@param size
+     * @return entity.Result
+     * @author: 许集思
+     * @date: 2020/5/24 17:03
+     **/
+    @ApiOperation(value = "分页+多条件查询Admin用户", notes = "分页+多条件查询Admin用户")
     @PostMapping(value = "/search/{page}/{size}")
     public Result findSearch(@RequestBody Map searchMap, @PathVariable int page, @PathVariable int size) {
         Page<Admin> pageList = adminService.findSearch(searchMap, page, size);
@@ -94,21 +106,28 @@ public class AdminController {
     }
 
     /**
-     * 根据条件查询
+     * 根据条件查询Admin用户
      *
      * @param searchMap
-     * @return
-     */
+     * @return entity.Result
+     * @author: 许集思
+     * @date: 2020/5/24 17:03
+     **/
+    @ApiOperation(value = "根据条件查询Admin用户", notes = "根据条件查询Admin用户")
     @PostMapping(value = "/search")
     public Result findSearch(@RequestBody Map searchMap) {
         return new Result(true, StatusCode.OK, "查询成功", adminService.findSearch(searchMap));
     }
 
     /**
-     * 增加
+     * 增加Admin用户
      *
      * @param admin
-     */
+     * @return entity.Result
+     * @author: 许集思
+     * @date: 2020/5/24 17:04
+     **/
+    @ApiOperation(value = "增加Admin用户", notes = "增加Admin用户")
     @RequestMapping(method = RequestMethod.POST)
     public Result add(@RequestBody Admin admin) {
         adminService.add(admin);
@@ -116,10 +135,14 @@ public class AdminController {
     }
 
     /**
-     * 修改
+     * 修改Admin用户
      *
-     * @param admin
-     */
+     * @param admin,@param id
+     * @return entity.Result
+     * @author: 许集思
+     * @date: 2020/5/24 17:04
+     **/
+    @ApiOperation(value = "修改Admin用户", notes = "修改Admin用户")
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public Result update(@RequestBody Admin admin, @PathVariable String id) {
         admin.setId(id);
@@ -128,10 +151,14 @@ public class AdminController {
     }
 
     /**
-     * 删除
+     * 删除Admin用户
      *
      * @param id
-     */
+     * @return entity.Result
+     * @author: 许集思
+     * @date: 2020/5/24 17:04
+     **/
+    @ApiOperation(value = "删除Admin用户", notes = "删除Admin用户")
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public Result delete(@PathVariable String id) {
         adminService.deleteById(id);

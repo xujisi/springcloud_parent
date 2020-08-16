@@ -1,5 +1,11 @@
 package entity;
 
+
+/**
+ * 存放结果的实体
+ * @author: 许集思
+ * @date:  2020/8/16 16:40
+ */
 public class Result {
     private boolean flag;
     private Integer code;

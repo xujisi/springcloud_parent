@@ -1,6 +1,8 @@
 package com.springcloud.manager.config;
 
 
+import org.springframework.cloud.netflix.zuul.filters.Route;
+import org.springframework.cloud.netflix.zuul.filters.RouteLocator;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 import springfox.documentation.swagger.web.SwaggerResource;
@@ -19,12 +21,28 @@ import java.util.List;
 @Primary
 public class DocumentationConfig implements SwaggerResourcesProvider {
 
+    private final RouteLocator routeLocator;
+
+    public DocumentationConfig(RouteLocator routeLocator) {
+        this.routeLocator = routeLocator;
+    }
+
+    /**
+     * 自动扫描eureka下面的服务
+     *
+     * @param
+     * @return java.util.List<springfox.documentation.swagger.web.SwaggerResource>
+     * @author: 许集思
+     * @date: 2020/5/23 14:47
+     **/
     @Override
     public List<SwaggerResource> get() {
         List resources = new ArrayList<>();
+        List<Route> routes = routeLocator.getRoutes();
         // 前面是网关路由，/v2/api-docs是swagger中的
-        resources.add(swaggerResource("搜索服务接口", "/base/v2/api-docs", "1.0"));
-        resources.add(swaggerResource("用户服务接口", "/user/v2/api-docs", "1.0"));
+        routes.forEach(route -> {
+            resources.add(swaggerResource(route.getId(), route.getFullPath().replace("**", "v2/api-docs"), "1.0"));
+        });
         return resources;
     }
 
@@ -35,5 +53,7 @@ public class DocumentationConfig implements SwaggerResourcesProvider {
         swaggerResource.setSwaggerVersion(version);
         return swaggerResource;
     }
+
+
 }
 

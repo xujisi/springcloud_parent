@@ -1,7 +1,38 @@
+################服务器#################
+#spring:
+#  cloud:
+#    config:
+#      name: user
+#      profile: dev
+#      label: master
+#      uri: http://192.168.128.128:12000
+
+##############本地#################
+server:
+  port: 9008
 spring:
-  cloud:
-    config:
-      name: user
-      profile: dev
-      label: master
-      uri: http://192.168.128.128:12000
+  application:
+    name: user #指定服务名
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://192.168.128.128:3306/tensquare_user?useUnicode=true&characterEncoding=utf8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&useSSL=false
+    username: root
+    password: root
+  jpa:
+    database: mysql
+    show-sql: true
+  redis:
+    host: 192.168.128.128
+  rabbitmq:
+    host: 192.168.128.128
+jwt:
+  config:
+    key: itcast
+    ttl: 3600000 #一个小时过期时间
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:6868/eureka/
+  instance:
+    prefer-ip-address: true  #跨域访问
+

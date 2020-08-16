@@ -85,7 +85,8 @@ public class ManagerFilter extends ZuulFilter {
         }
 
         //登录放行
-        if (request.getRequestURI().indexOf("login") > 0) {
+        String uri = request.getRequestURI();
+        if (request.getRequestURI().indexOf("login") > 0 || request.getRequestURI().indexOf("/v2/api-docs") > 0) {
             return null;
         }
 

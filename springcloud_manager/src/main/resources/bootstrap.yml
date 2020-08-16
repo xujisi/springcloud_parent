@@ -1,52 +1,52 @@
-spring:
-  cloud:
-    config:
-      name: manager
-      profile: dev
-      label: master
-      uri: http://192.168.128.128:12000
-
-
-
-#  这是一个后台网关 可以直接调通别的微服务
-#server:
-#  port: 9011
+##############################正式#####################################
 #spring:
-#  application:
-#    name: springcloud-manager
-#eureka:
-#  client:
-#    service-url:
-#      defaultZone: http://192.168.128.128:6868/eureka/
-#  instance:
-#    prefer-ip-address: true  #跨域访问
-#jwt:
-#  config:
-#    key: itcast #签名
-#zuul:
-#  routes:
-#    springcloud-gathering: #活动
-#      path: /gathering/** #配置请求URL的请求规则
-#      serviceId: springcloud-gathering #指定Eureka注册中心中的服务id
-#    springcloud-article: #文章
-#      path: /article/** #配置请求URL的请求规则
-#      serviceId: springcloud-article #指定Eureka注册中心中的服务id
-#    springcloud-base: #基础
-#      path: /base/** #配置请求URL的请求规则
-#      serviceId: springcloud-base #指定Eureka注册中心中的服务id
-#    springcloud-friend: #交友
-#      path: /friend/** #配置请求URL的请求规则
-#      serviceId: springcloud-friend #指定Eureka注册中心中的服务id
-#    springcloud-qa: #问答
-#      path: /qa/** #配置请求URL的请求规则
-#      serviceId: springcloud-qa #指定Eureka注册中心中的服务id
-#    springcloud-recruit: #招聘
-#      path: /recruit/** #配置请求URL的请求规则
-#        serviceId: springcloud-recruit #指定Eureka注册中心中的服务id
-#    springcloud-spit: #吐槽
-#      path: /spit/** #配置请求URL的请求规则
-#      serviceId: springcloud-spit #指定Eureka注册中心中的服务id
-#    springcloud-user: #用户
-#      path: /user/** #配置请求URL的请求规则
-#      serviceId: springcloud-user #指定Eureka注册中心中的服务id
-#      url: http://192.168.128.128:9008
+#  cloud:
+#    config:
+#      name: manager
+#      profile: dev
+#      label: master
+#      uri: http://192.168.128.128:12000
+
+
+##############################本地#####################################
+#这是一个后台网关 可以直接调通别的微服务
+server:
+  port: 9011
+spring:
+  application:
+    name: manager
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:6868/eureka/
+  instance:
+    prefer-ip-address: true  #跨域访问
+jwt:
+  config:
+    key: itcast #签名
+zuul:
+  routes:
+    springcloud-gathering: #活动
+      path: /gathering/** #配置请求URL的请求规则
+      serviceId: gathering #指定Eureka注册中心中的服务id
+    springcloud-article: #文章
+      path: /article/** #配置请求URL的请求规则
+      serviceId: article #指定Eureka注册中心中的服务id
+    springcloud-base: #基础
+      path: /base/** #配置请求URL的请求规则
+      serviceId: base #指定Eureka注册中心中的服务id
+    springcloud-friend: #交友
+      path: /friend/** #配置请求URL的请求规则
+      serviceId: friend #指定Eureka注册中心中的服务id
+    springcloud-qa: #问答
+      path: /qa/** #配置请求URL的请求规则
+      serviceId: qa #指定Eureka注册中心中的服务id
+    springcloud-recruit: #招聘
+      path: /recruit/** #配置请求URL的请求规则
+      serviceId: recruit #指定Eureka注册中心中的服务id
+    springcloud-spit: #吐槽
+      path: /spit/** #配置请求URL的请求规则
+      serviceId: spit #指定Eureka注册中心中的服务id
+    springcloud-user: #用户
+      path: /user/** #配置请求URL的请求规则
+      serviceId: user #指定Eureka注册中心中的服务id

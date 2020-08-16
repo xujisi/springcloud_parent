@@ -6,6 +6,12 @@ import org.springframework.cloud.config.server.EnableConfigServer;
 
 @EnableConfigServer
 @SpringBootApplication
+
+/**
+ * 配置微服务主程序（加个注解即可）
+ * @author: 许集思
+ * @date:  2020/8/16 16:28
+ */
 public class ConfigApplication {
 
     public static void main(String[] args) {

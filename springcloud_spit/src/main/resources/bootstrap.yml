@@ -1,7 +1,24 @@
+################服务器#################
+#spring:
+#  cloud:
+#    config:
+#      name: spit
+#      profile: dev
+#      label: master
+#      uri: http://192.168.128.128:12000
+
+
+##############本地#################
+server:
+  port: 9006
 spring:
-  cloud:
-    config:
-      name: spit
-      profile: dev
-      label: master
-      uri: http://192.168.128.128:12000  
+  application:
+    name: spit #微服务名
+  data:
+    #MongoDb配置
+    mongodb:
+      host: 192.168.128.128
+      database: spitdb
+    #Redis缓存配置
+  redis:
+    host: 192.168.128.128

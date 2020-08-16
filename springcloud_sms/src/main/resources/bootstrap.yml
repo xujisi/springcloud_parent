@@ -1,7 +1,19 @@
+################服务器#################
+#spring:
+#  cloud:
+#    config:
+#      name: sms
+#      profile: dev
+#      label: master
+#      uri: http://192.168.128.128:12000
+
+
+
+##############本地#################
+server:
+  port: 9009
 spring:
-  cloud:
-    config:
-      name: sms
-      profile: dev
-      label: master
-      uri: http://192.168.128.128:12000  
+  application:
+    name: sms
+  rabbitmq:
+    host: 192.168.128.128

@@ -26,7 +26,6 @@ import java.util.Map;
 @RestController
 @CrossOrigin
 @RequestMapping("/user")
-
 @Api(tags = "用户模块接口", description = "用户模块接口")
 public class UserController {
 
@@ -48,6 +47,7 @@ public class UserController {
      * @author: 许集思
      * @date: 2020/5/1 20:33
      **/
+    @ApiOperation(value = "更新好友粉丝数和用户关注数", notes = "更新好友粉丝数和用户关注数")
     @PutMapping("/{userId}/{friendId}/{x}")
     public void updateFansAndFollowCount(@PathVariable String userId, @PathVariable String friendId, @PathVariable int x) {
         userService.updateFansAndFollowCount(x, userId, friendId);
@@ -56,9 +56,12 @@ public class UserController {
     /**
      * 用户登录
      *
-     * @param user
-     * @return
-     */
+     * @param user,@param response
+     * @return entity.Result
+     * @author: 许集思
+     * @date: 2020/5/24 17:06
+     **/
+    @ApiOperation(value = "用户登录", notes = "用户登录")
     @PostMapping("/login")
     public Result login(@RequestBody User user, HttpServletResponse response) {
         User userLogin = userService.login(user.getMobile(), user.getPassword());
@@ -70,6 +73,7 @@ public class UserController {
         Map<String, Object> map = new HashMap();
         map.put("token", token);
         map.put("role", "user");
+        map.put("userName",user.getMobile());
         //放进Cookies
         Cookie cookie = new Cookie("token", token);
         response.addCookie(cookie);
@@ -78,8 +82,13 @@ public class UserController {
 
     /**
      * 发送短信验证码
-     */
-    @ApiOperation(value = "发送短信验证码")
+     *
+     * @param mobile
+     * @return entity.Result
+     * @author: 许集思
+     * @date: 2020/5/24 17:06
+     **/
+    @ApiOperation(value = "发送短信验证码", notes = "发送短信验证码")
     @PostMapping("/sendsms/{mobile}")
     public Result sendSms(@PathVariable String mobile) {
         userService.sendSms(mobile);
@@ -87,8 +96,14 @@ public class UserController {
     }
 
     /**
-     * @MethodName: 注册
-     */
+     * 注册User用户
+     *
+     * @param code,@param user
+     * @return entity.Result
+     * @author: 许集思
+     * @date: 2020/5/24 17:06
+     **/
+    @ApiOperation(value = "注册User用户", notes = "注册User用户")
     @PostMapping("/register/{code}")
     public Result regist(@PathVariable String code, @RequestBody User user) {
         //得到缓存中的验证码
@@ -105,21 +120,28 @@ public class UserController {
 
 
     /**
-     * 查询全部数据
+     * 查询全部用户
      *
-     * @return
-     */
+     * @param
+     * @return entity.Result
+     * @author: 许集思
+     * @date: 2020/5/24 17:06
+     **/
+    @ApiOperation(value = "查询全部用户", notes = "查询全部用户")
     @RequestMapping(method = RequestMethod.GET)
     public Result findAll() {
         return new Result(true, StatusCode.OK, "查询成功", userService.findAll());
     }
 
     /**
-     * 根据ID查询
+     * 根据ID查询User用户
      *
-     * @param id ID
-     * @return
-     */
+     * @param id
+     * @return entity.Result
+     * @author: 许集思
+     * @date: 2020/5/24 17:07
+     **/
+    @ApiOperation(value = "根据ID查询User用户", notes = "根据ID查询User用户")
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public Result findById(@PathVariable String id) {
         return new Result(true, StatusCode.OK, "查询成功", userService.findById(id));
@@ -127,13 +149,14 @@ public class UserController {
 
 
     /**
-     * 分页+多条件查询
+     * 分页+多条件查询User用户
      *
-     * @param searchMap 查询条件封装
-     * @param page      页码
-     * @param size      页大小
-     * @return 分页结果
-     */
+     * @param searchMap,@param page,@param size
+     * @return entity.Result
+     * @author: 许集思
+     * @date: 2020/5/24 17:07
+     **/
+    @ApiOperation(value = "分页+多条件查询User用户", notes = "分页+多条件查询User用户")
     @RequestMapping(value = "/search/{page}/{size}", method = RequestMethod.POST)
     public Result findSearch(@RequestBody Map searchMap, @PathVariable int page, @PathVariable int size) {
         Page<User> pageList = userService.findSearch(searchMap, page, size);
@@ -141,32 +164,29 @@ public class UserController {
     }
 
     /**
-     * 根据条件查询
+     * 根据条件查询User用户
      *
      * @param searchMap
-     * @return
-     */
+     * @return entity.Result
+     * @author: 许集思
+     * @date: 2020/5/24 17:07
+     **/
+    @ApiOperation(value = "根据条件查询User用户", notes = "根据条件查询User用户")
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     public Result findSearch(@RequestBody Map searchMap) {
         return new Result(true, StatusCode.OK, "查询成功", userService.findSearch(searchMap));
     }
 
-    /**
-     * 增加
-     *
-     * @param user
-     */
-    @RequestMapping(method = RequestMethod.POST)
-    public Result add(@RequestBody User user) {
-        userService.add(user);
-        return new Result(true, StatusCode.OK, "增加成功");
-    }
 
     /**
-     * 修改
+     * 修改User用户
      *
-     * @param user
-     */
+     * @param user,@param id
+     * @return entity.Result
+     * @author: 许集思
+     * @date: 2020/5/24 17:08
+     **/
+    @ApiOperation(value = "修改User用户", notes = "修改User用户")
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public Result update(@RequestBody User user, @PathVariable String id) {
         user.setId(id);
@@ -175,10 +195,13 @@ public class UserController {
     }
 
     /**
-     * 删除(必须有管理员权限才可以删除)
+     * 删除User用户(必须有管理员权限才可以删除)
      *
      * @param id
-     */
+     * @return entity.Result
+     * @author: 许集思
+     * @date: 2020/5/24 17:08
+     **/
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public Result delete(@PathVariable String id) {
         userService.deleteById(id);

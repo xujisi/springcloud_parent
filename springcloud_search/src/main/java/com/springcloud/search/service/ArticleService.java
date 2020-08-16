@@ -19,6 +19,14 @@ public class ArticleService {
     //    @Autowired
     //    private IdWorker idWorker;
 
+    /**
+     * 添加进索引库
+     *
+     * @param article
+     * @return entity.Result
+     * @author: 许集思
+     * @date: 2020/5/24 16:57
+     **/
     public void save(Article article) {
         //article.setId(idWorker.nextId() + "");
         searchDao.save(article);
@@ -36,7 +44,6 @@ public class ArticleService {
         Pageable pageable = PageRequest.of(page - 1, size);
         return searchDao.findByTitleLikeOrContentLike(key, key, pageable);
     }
-
 
 
 }

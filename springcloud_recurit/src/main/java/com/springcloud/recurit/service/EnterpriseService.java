@@ -31,28 +31,39 @@ public class EnterpriseService {
     @Autowired
     private IdWorker idWorker;
 
+    /**
+     * 查询热门企业
+     *
+     * @param ishot
+     * @return java.util.List<com.springcloud.recurit.pojo.Enterprise>
+     * @author: 许集思
+     * @date: 2020/5/24 16:50
+     **/
     public List<Enterprise> hotList(String ishot) {
         return enterpriseDao.findByIshot(ishot);
     }
 
     /**
-     * 查询全部列表
+     * 查询全部企业
      *
-     * @return
-     */
+     * @param
+     * @return java.util.List<com.springcloud.recurit.pojo.Enterprise>
+     * @author: 许集思
+     * @date: 2020/5/24 16:50
+     **/
     public List<Enterprise> findAll() {
         return enterpriseDao.findAll();
     }
 
 
     /**
-     * 条件查询+分页
+     * 分页+多条件查询企业
      *
-     * @param whereMap
-     * @param page
-     * @param size
-     * @return
-     */
+     * @param whereMap,@param page,@param size
+     * @return org.springframework.data.domain.Page<com.springcloud.recurit.pojo.Enterprise>
+     * @author: 许集思
+     * @date: 2020/5/24 16:49
+     **/
     public Page<Enterprise> findSearch(Map whereMap, int page, int size) {
         Specification<Enterprise> specification = createSpecification(whereMap);
         PageRequest pageRequest = PageRequest.of(page - 1, size);
@@ -61,50 +72,62 @@ public class EnterpriseService {
 
 
     /**
-     * 条件查询
+     * 根据条件查询企业
      *
      * @param whereMap
-     * @return
-     */
+     * @return java.util.List<com.springcloud.recurit.pojo.Enterprise>
+     * @author: 许集思
+     * @date: 2020/5/24 16:49
+     **/
     public List<Enterprise> findSearch(Map whereMap) {
         Specification<Enterprise> specification = createSpecification(whereMap);
         return enterpriseDao.findAll(specification);
     }
 
     /**
-     * 根据ID查询实体
+     * 根据ID查询企业
      *
      * @param id
-     * @return
-     */
+     * @return com.springcloud.recurit.pojo.Enterprise
+     * @author: 许集思
+     * @date: 2020/5/24 16:50
+     **/
     public Enterprise findById(String id) {
         return enterpriseDao.findById(id).get();
     }
 
     /**
-     * 增加
+     * 新增企业
      *
-     * @param enterprise
-     */
+     * @return void
+     * @author: 许集思
+     * @date: 2020/5/24 16:49
+     **/
     public void add(Enterprise enterprise) {
         enterprise.setId(idWorker.nextId() + "");
         enterpriseDao.save(enterprise);
     }
 
     /**
-     * 修改
+     * 修改企业信息
      *
      * @param enterprise
-     */
+     * @return void
+     * @author: 许集思
+     * @date: 2020/5/24 16:49
+     **/
     public void update(Enterprise enterprise) {
         enterpriseDao.save(enterprise);
     }
 
     /**
-     * 删除
+     * 删除企业
      *
      * @param id
-     */
+     * @return void
+     * @author: 许集思
+     * @date: 2020/5/24 16:49
+     **/
     public void deleteById(String id) {
         enterpriseDao.deleteById(id);
     }

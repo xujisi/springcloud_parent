@@ -21,9 +21,10 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 /**
- * 服务层
+ * 文章Service层
  *
- * @author Administrator
+ * @author: 许集思
+ * @date: 2020/5/23 23:44
  */
 @Service
 @Transactional
@@ -38,32 +39,51 @@ public class ArticleService {
     @Autowired
     private RedisTemplate redisTemplate;
 
+    /**
+     * 审核文章
+     *
+     * @param id
+     * @return void
+     * @author: 许集思
+     * @date: 2020/5/23 23:45
+     **/
     public void updateState(String id) {
         articleDao.updateState(id);
     }
 
+    /**
+     * 点赞文章
+     *
+     * @param id
+     * @return void
+     * @author: 许集思
+     * @date: 2020/5/23 23:45
+     **/
     public void addThumbup(String id) {
         articleDao.addThumbup(id);
     }
 
     /**
-     * 查询全部列表
+     * 查询全部文章
      *
-     * @return
-     */
+     * @param
+     * @return java.util.List<com.springcloud.article.pojo.Article>
+     * @author: 许集思
+     * @date: 2020/5/23 23:46
+     **/
     public List<Article> findAll() {
         return articleDao.findAll();
     }
 
 
     /**
-     * 条件查询+分页
+     * 分页+多条件查询文章
      *
-     * @param whereMap
-     * @param page
-     * @param size
-     * @return
-     */
+     * @param whereMap,@param page,@param size
+     * @return org.springframework.data.domain.Page<com.springcloud.article.pojo.Article>
+     * @author: 许集思
+     * @date: 2020/5/23 23:47
+     **/
     public Page<Article> findSearch(Map whereMap, int page, int size) {
         Specification<Article> specification = createSpecification(whereMap);
         PageRequest pageRequest = PageRequest.of(page - 1, size);
@@ -72,22 +92,26 @@ public class ArticleService {
 
 
     /**
-     * 条件查询
+     * 根据条件查询文章
      *
      * @param whereMap
-     * @return
-     */
+     * @return java.util.List<com.springcloud.article.pojo.Article>
+     * @author: 许集思
+     * @date: 2020/5/23 23:47
+     **/
     public List<Article> findSearch(Map whereMap) {
         Specification<Article> specification = createSpecification(whereMap);
         return articleDao.findAll(specification);
     }
 
     /**
-     * 根据ID查询实体
+     * 根据ID查询文章
      *
      * @param id
-     * @return
-     */
+     * @return com.springcloud.article.pojo.Article
+     * @author: 许集思
+     * @date: 2020/5/23 23:46
+     **/
     public Article findById(String id) {
         //先从缓存中查询当前对象
         Article article = (Article) redisTemplate.opsForValue().get("article_" + id);
@@ -102,20 +126,26 @@ public class ArticleService {
     }
 
     /**
-     * 增加
+     * 新增文章
      *
      * @param article
-     */
+     * @return void
+     * @author: 许集思
+     * @date: 2020/5/23 23:47
+     **/
     public void add(Article article) {
         article.setId(idWorker.nextId() + "");
         articleDao.save(article);
     }
 
     /**
-     * 修改
+     * 修改文章
      *
      * @param article
-     */
+     * @return void
+     * @author: 许集思
+     * @date: 2020/5/23 23:47
+     **/
     public void update(Article article) {
         //需要清除redis缓存
         redisTemplate.delete("article_" + article);
@@ -123,10 +153,13 @@ public class ArticleService {
     }
 
     /**
-     * 删除
+     * 删除文章
      *
      * @param id
-     */
+     * @return void
+     * @author: 许集思
+     * @date: 2020/5/23 23:48
+     **/
     public void deleteById(String id) {
         articleDao.deleteById(id);
     }
@@ -135,8 +168,10 @@ public class ArticleService {
      * 动态条件构建
      *
      * @param searchMap
-     * @return
-     */
+     * @return org.springframework.data.jpa.domain.Specification<com.springcloud.article.pojo.Article>
+     * @author: 许集思
+     * @date: 2020/5/23 23:48
+     **/
     private Specification<Article> createSpecification(Map searchMap) {
 
         return new Specification<Article>() {

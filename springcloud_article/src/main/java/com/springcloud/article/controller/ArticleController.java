@@ -5,6 +5,8 @@ import com.springcloud.article.service.ArticleService;
 import entity.PageResult;
 import entity.Result;
 import entity.StatusCode;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
@@ -12,10 +14,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Map;
 
 /**
- * 控制器层
+ * Article控制层
  *
- * @author Administrator
+ * @author: 许集思
+ * @date: 2020/5/23 22:53
  */
+@Api(tags = "文章管理API")
 @RestController
 @CrossOrigin
 @RequestMapping("/article")
@@ -25,12 +29,30 @@ public class ArticleController {
     private ArticleService articleService;
 
 
+    /**
+     * 审核文章
+     *
+     * @param articleId
+     * @return entity.Result
+     * @author: 许集思
+     * @date: 2020/5/23 22:52
+     **/
+    @ApiOperation(value = "审核文章", notes = "审核文章")
     @PutMapping("/examine/{articleId}")
     public Result examine(@PathVariable String articleId) {
         articleService.updateState(articleId);
         return new Result(true, StatusCode.OK, "审核成功");
     }
 
+    /**
+     * 点赞文章
+     *
+     * @param articleId
+     * @return entity.Result
+     * @author: 许集思
+     * @date: 2020/5/23 22:52
+     **/
+    @ApiOperation(value = "点赞文章", notes = "点赞文章")
     @PutMapping("/thumbup/{articleId}")
     public Result thumbup(@PathVariable String articleId) {
         articleService.addThumbup(articleId);
@@ -38,35 +60,42 @@ public class ArticleController {
     }
 
     /**
-     * 查询全部数据
+     * 查询全部文章
      *
-     * @return
-     */
+     * @param
+     * @return entity.Result
+     * @author: 许集思
+     * @date: 2020/5/23 22:52
+     **/
+    @ApiOperation(value = "查询所有文章", notes = "查询所有文章")
     @RequestMapping(method = RequestMethod.GET)
     public Result findAll() {
         return new Result(true, StatusCode.OK, "查询成功", articleService.findAll());
     }
 
     /**
-     * 根据ID查询
+     * 根据ID查询文章
      *
-     * @param id ID
-     * @return
-     */
+     * @param id
+     * @return entity.Result
+     * @author: 许集思
+     * @date: 2020/5/23 22:53
+     **/
+    @ApiOperation(value = "根据ID查询文章", notes = "根据ID查询文章")
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public Result findById(@PathVariable String id) {
         return new Result(true, StatusCode.OK, "查询成功", articleService.findById(id));
     }
 
-
     /**
-     * 分页+多条件查询
+     * 分页+多条件查询文章
      *
-     * @param searchMap 查询条件封装
-     * @param page      页码
-     * @param size      页大小
-     * @return 分页结果
-     */
+     * @param searchMap,@param page,@param size
+     * @return entity.Result
+     * @author: 许集思
+     * @date: 2020/5/23 22:54
+     **/
+    @ApiOperation(value = "分页+多条件查询文章", notes = "分页+多条件查询文章")
     @RequestMapping(value = "/search/{page}/{size}", method = RequestMethod.POST)
     public Result findSearch(@RequestBody Map searchMap, @PathVariable int page, @PathVariable int size) {
         Page<Article> pageList = articleService.findSearch(searchMap, page, size);
@@ -74,21 +103,28 @@ public class ArticleController {
     }
 
     /**
-     * 根据条件查询
+     * 根据条件查询文章
      *
      * @param searchMap
-     * @return
-     */
+     * @return entity.Result
+     * @author: 许集思
+     * @date: 2020/5/23 22:54
+     **/
+    @ApiOperation(value = "根据条件查询文章", notes = "根据条件查询文章")
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     public Result findSearch(@RequestBody Map searchMap) {
         return new Result(true, StatusCode.OK, "查询成功", articleService.findSearch(searchMap));
     }
 
     /**
-     * 增加
+     * 新增文章
      *
      * @param article
-     */
+     * @return entity.Result
+     * @author: 许集思
+     * @date: 2020/5/23 22:54
+     **/
+    @ApiOperation(value = "新增文章", notes = "新增文章")
     @RequestMapping(method = RequestMethod.POST)
     public Result add(@RequestBody Article article) {
         articleService.add(article);
@@ -96,10 +132,14 @@ public class ArticleController {
     }
 
     /**
-     * 修改
+     * 修改文章
      *
-     * @param article
-     */
+     * @param article,@param id
+     * @return entity.Result
+     * @author: 许集思
+     * @date: 2020/5/23 23:26
+     **/
+    @ApiOperation(value = "修改文章", notes = "修改文章")
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public Result update(@RequestBody Article article, @PathVariable String id) {
         article.setId(id);
@@ -108,10 +148,14 @@ public class ArticleController {
     }
 
     /**
-     * 删除
+     * 删除文章
      *
      * @param id
-     */
+     * @return entity.Result
+     * @author: 许集思
+     * @date: 2020/5/23 23:27
+     **/
+    @ApiOperation(value = "删除文章", notes = "删除文章")
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public Result delete(@PathVariable String id) {
         articleService.deleteById(id);

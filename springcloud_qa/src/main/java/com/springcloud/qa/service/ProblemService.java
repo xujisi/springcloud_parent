@@ -32,17 +32,40 @@ public class ProblemService {
     @Autowired
     private IdWorker idWorker;
 
-
+    /**
+     * 根据回复时间排序查询问题
+     *
+     * @param labelId,@param page,@param rows
+     * @return org.springframework.data.domain.Page<com.springcloud.qa.pojo.Problem>
+     * @author: 许集思
+     * @date: 2020/5/24 16:38
+     **/
     public Page<Problem> newList(String labelId, int page, int rows) {
         Pageable pageable = PageRequest.of(page - 1, rows);
         return problemDao.newList(labelId, pageable);
     }
 
+    /**
+     * 根据回复数量排序查询问题
+     *
+     * @param labelId,@param page,@param rows
+     * @return org.springframework.data.domain.Page<com.springcloud.qa.pojo.Problem>
+     * @author: 许集思
+     * @date: 2020/5/24 16:38
+     **/
     public Page<Problem> hotList(String labelId, int page, int rows) {
         Pageable pageable = PageRequest.of(page - 1, rows);
         return problemDao.hotList(labelId, pageable);
     }
 
+    /**
+     * 查出回复为0的问题
+     *
+     * @param labelId,@param page,@param rows
+     * @return org.springframework.data.domain.Page<com.springcloud.qa.pojo.Problem>
+     * @author: 许集思
+     * @date: 2020/5/24 16:38
+     **/
     public Page<Problem> waitList(String labelId, int page, int rows) {
         Pageable pageable = PageRequest.of(page - 1, rows);
         return problemDao.waitList(labelId, pageable);
@@ -50,23 +73,26 @@ public class ProblemService {
 
 
     /**
-     * 查询全部列表
+     * 查询全部问题
      *
-     * @return
-     */
+     * @param
+     * @return java.util.List<com.springcloud.qa.pojo.Problem>
+     * @author: 许集思
+     * @date: 2020/5/24 16:38
+     **/
     public List<Problem> findAll() {
         return problemDao.findAll();
     }
 
 
     /**
-     * 条件查询+分页
+     * 分页+多条件查询问题
      *
-     * @param whereMap
-     * @param page
-     * @param size
-     * @return
-     */
+     * @param whereMap,@param page,@param size
+     * @return org.springframework.data.domain.Page<com.springcloud.qa.pojo.Problem>
+     * @author: 许集思
+     * @date: 2020/5/24 16:37
+     **/
     public Page<Problem> findSearch(Map whereMap, int page, int size) {
         Specification<Problem> specification = createSpecification(whereMap);
         PageRequest pageRequest = PageRequest.of(page - 1, size);
@@ -75,50 +101,63 @@ public class ProblemService {
 
 
     /**
-     * 条件查询
+     * 根据条件查询问题
      *
      * @param whereMap
-     * @return
-     */
+     * @return java.util.List<com.springcloud.qa.pojo.Problem>
+     * @author: 许集思
+     * @date: 2020/5/24 16:37
+     **/
     public List<Problem> findSearch(Map whereMap) {
         Specification<Problem> specification = createSpecification(whereMap);
         return problemDao.findAll(specification);
     }
 
     /**
-     * 根据ID查询实体
+     * 根据ID查询问题
      *
      * @param id
-     * @return
-     */
+     * @return com.springcloud.qa.pojo.Problem
+     * @author: 许集思
+     * @date: 2020/5/24 16:37
+     **/
     public Problem findById(String id) {
         return problemDao.findById(id).get();
     }
 
     /**
-     * 增加
+     * 新增问题
      *
      * @param problem
-     */
+     * @return void
+     * @author: 许集思
+     * @date: 2020/5/24 16:37
+     **/
     public void add(Problem problem) {
         problem.setId(idWorker.nextId() + "");
         problemDao.save(problem);
     }
 
     /**
-     * 修改
+     * 修改问题
      *
      * @param problem
-     */
+     * @return void
+     * @author: 许集思
+     * @date: 2020/5/24 16:37
+     **/
     public void update(Problem problem) {
         problemDao.save(problem);
     }
 
     /**
-     * 删除
+     * 删除问题
      *
      * @param id
-     */
+     * @return void
+     * @author: 许集思
+     * @date: 2020/5/24 16:37
+     **/
     public void deleteById(String id) {
         problemDao.deleteById(id);
     }

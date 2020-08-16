@@ -31,33 +31,52 @@ public class RecruitService {
     @Autowired
     private IdWorker idWorker;
 
+    /**
+     * 查询出排名前6的职位
+     *
+     * @param
+     * @return java.util.List<com.springcloud.recurit.pojo.Recruit>
+     * @author: 许集思
+     * @date: 2020/5/24 16:55
+     **/
     public List<Recruit> recommend() {
         return recruitDao.findTop6ByStateOrderByCreatetimeDesc("2");
     }
 
+    /**
+     * 查询出状态不为0排名前6的职位
+     *
+     * @param
+     * @return java.util.List<com.springcloud.recurit.pojo.Recruit>
+     * @author: 许集思
+     * @date: 2020/5/24 16:55
+     **/
     public List<Recruit> newList() {
         return recruitDao.findTop6ByStateNotOrderByCreatetimeDesc("0");
     }
 
 
     /**
-     * 查询全部列表
+     * 查询全部职位
      *
-     * @return
-     */
+     * @param
+     * @return java.util.List<com.springcloud.recurit.pojo.Recruit>
+     * @author: 许集思
+     * @date: 2020/5/24 16:55
+     **/
     public List<Recruit> findAll() {
         return recruitDao.findAll();
     }
 
 
     /**
-     * 条件查询+分页
+     * 分页+多条件查询职位
      *
-     * @param whereMap
-     * @param page
-     * @param size
-     * @return
-     */
+     * @param whereMap,@param page,@param size
+     * @return org.springframework.data.domain.Page<com.springcloud.recurit.pojo.Recruit>
+     * @author: 许集思
+     * @date: 2020/5/24 16:55
+     **/
     public Page<Recruit> findSearch(Map whereMap, int page, int size) {
         Specification<Recruit> specification = createSpecification(whereMap);
         PageRequest pageRequest = PageRequest.of(page - 1, size);
@@ -66,50 +85,63 @@ public class RecruitService {
 
 
     /**
-     * 条件查询
+     * 根据条件查询职位
      *
      * @param whereMap
-     * @return
-     */
+     * @return java.util.List<com.springcloud.recurit.pojo.Recruit>
+     * @author: 许集思
+     * @date: 2020/5/24 16:55
+     **/
     public List<Recruit> findSearch(Map whereMap) {
         Specification<Recruit> specification = createSpecification(whereMap);
         return recruitDao.findAll(specification);
     }
 
     /**
-     * 根据ID查询实体
+     * 根据ID查询职位
      *
      * @param id
-     * @return
-     */
+     * @return com.springcloud.recurit.pojo.Recruit
+     * @author: 许集思
+     * @date: 2020/5/24 16:55
+     **/
     public Recruit findById(String id) {
         return recruitDao.findById(id).get();
     }
 
     /**
-     * 增加
+     * 新增职位
      *
      * @param recruit
-     */
+     * @return void
+     * @author: 许集思
+     * @date: 2020/5/24 16:55
+     **/
     public void add(Recruit recruit) {
         recruit.setId(idWorker.nextId() + "");
         recruitDao.save(recruit);
     }
 
     /**
-     * 修改
+     * 修改职位
      *
      * @param recruit
-     */
+     * @return void
+     * @author: 许集思
+     * @date: 2020/5/24 16:55
+     **/
     public void update(Recruit recruit) {
         recruitDao.save(recruit);
     }
 
     /**
-     * 删除
+     * 删除职位
      *
      * @param id
-     */
+     * @return void
+     * @author: 许集思
+     * @date: 2020/5/24 16:55
+     **/
     public void deleteById(String id) {
         recruitDao.deleteById(id);
     }

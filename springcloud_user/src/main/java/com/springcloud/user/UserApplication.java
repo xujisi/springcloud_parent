@@ -5,11 +5,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 import util.IdWorker;
 import util.JwtUtil;
 
 @EnableEurekaClient
 @SpringBootApplication
+@EnableSwagger2
 public class UserApplication {
 
     public static void main(String[] args) {

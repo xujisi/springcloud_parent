@@ -1,7 +1,40 @@
+##############################正式#####################################
+#spring:
+#  cloud:
+#    config:
+#      name: article
+#      profile: dev
+#      label: master
+#      uri: http://192.168.128.128:12000
+
+
+##############################本地#####################################
+server:
+  port: 9004
 spring:
+  application:
+    name: article #指定服务名
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://192.168.128.128:3306/tensquare_article?useUnicode=true&characterEncoding=utf8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&useSSL=false
+    username: root
+    password: root
+  jpa:
+    database: MySQL
+    show-sql: true
   cloud:
-    config:
-      name: article
-      profile: dev
-      label: master
-      uri: http://192.168.128.128:12000
+    bootstracp:
+      enabled:
+        false
+
+  #redis缓存节点
+  redis:
+    host: 192.168.128.128
+
+#跨域访问
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:6868/eureka/
+  instance:
+    prefer-ip-address: true

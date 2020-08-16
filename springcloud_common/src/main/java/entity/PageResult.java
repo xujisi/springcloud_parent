@@ -2,6 +2,11 @@ package entity;
 
 import java.util.List;
 
+/**
+ * 存放Page的实体
+ * @author: 许集思
+ * @date:  2020/8/16 16:40
+ */
 public class PageResult<T> {
 
     private Long total;

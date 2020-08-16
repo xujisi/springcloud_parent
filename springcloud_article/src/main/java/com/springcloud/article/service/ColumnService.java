@@ -18,9 +18,10 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 服务层
+ * 专栏Service层
  *
- * @author Administrator
+ * @author: 许集思
+ * @date: 2020/5/23 23:50
  */
 @Service
 public class ColumnService {
@@ -32,23 +33,26 @@ public class ColumnService {
     private IdWorker idWorker;
 
     /**
-     * 查询全部列表
+     * 查询全部专栏
      *
-     * @return
-     */
+     * @param
+     * @return java.util.List<com.springcloud.article.pojo.Column>
+     * @author: 许集思
+     * @date: 2020/5/23 23:50
+     **/
     public List<Column> findAll() {
         return columnDao.findAll();
     }
 
 
     /**
-     * 条件查询+分页
+     * 分页+多条件查询专栏
      *
-     * @param whereMap
-     * @param page
-     * @param size
-     * @return
-     */
+     * @param whereMap,@param page,@param size
+     * @return org.springframework.data.domain.Page<com.springcloud.article.pojo.Column>
+     * @author: 许集思
+     * @date: 2020/5/23 23:51
+     **/
     public Page<Column> findSearch(Map whereMap, int page, int size) {
         Specification<Column> specification = createSpecification(whereMap);
         PageRequest pageRequest = PageRequest.of(page - 1, size);
@@ -57,50 +61,63 @@ public class ColumnService {
 
 
     /**
-     * 条件查询
+     * 根据条件查询专栏
      *
      * @param whereMap
-     * @return
-     */
+     * @return java.util.List<com.springcloud.article.pojo.Column>
+     * @author: 许集思
+     * @date: 2020/5/23 23:51
+     **/
     public List<Column> findSearch(Map whereMap) {
         Specification<Column> specification = createSpecification(whereMap);
         return columnDao.findAll(specification);
     }
 
     /**
-     * 根据ID查询实体
+     * 根据ID查询专栏
      *
      * @param id
-     * @return
-     */
+     * @return com.springcloud.article.pojo.Column
+     * @author: 许集思
+     * @date: 2020/5/23 23:50
+     **/
     public Column findById(String id) {
         return columnDao.findById(id).get();
     }
 
     /**
-     * 增加
+     * 增加专栏
      *
      * @param column
-     */
+     * @return void
+     * @author: 许集思
+     * @date: 2020/5/23 23:51
+     **/
     public void add(Column column) {
         column.setId(idWorker.nextId() + "");
         columnDao.save(column);
     }
 
     /**
-     * 修改
+     * 修改专栏
      *
      * @param column
-     */
+     * @return void
+     * @author: 许集思
+     * @date: 2020/5/23 23:51
+     **/
     public void update(Column column) {
         columnDao.save(column);
     }
 
     /**
-     * 删除
+     * 删除专栏
      *
      * @param id
-     */
+     * @return void
+     * @author: 许集思
+     * @date: 2020/5/23 23:51
+     **/
     public void deleteById(String id) {
         columnDao.deleteById(id);
     }
@@ -109,12 +126,12 @@ public class ColumnService {
      * 动态条件构建
      *
      * @param searchMap
-     * @return
-     */
+     * @return org.springframework.data.jpa.domain.Specification<com.springcloud.article.pojo.Column>
+     * @author: 许集思
+     * @date: 2020/5/23 23:51
+     **/
     private Specification<Column> createSpecification(Map searchMap) {
-
         return new Specification<Column>() {
-
             @Override
             public Predicate toPredicate(Root<Column> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
                 List<Predicate> predicateList = new ArrayList<Predicate>();
@@ -138,12 +155,9 @@ public class ColumnService {
                 if (searchMap.get("state") != null && !"".equals(searchMap.get("state"))) {
                     predicateList.add(cb.like(root.get("state").as(String.class), "%" + (String) searchMap.get("state") + "%"));
                 }
-
                 return cb.and(predicateList.toArray(new Predicate[predicateList.size()]));
-
             }
         };
-
     }
 
 }

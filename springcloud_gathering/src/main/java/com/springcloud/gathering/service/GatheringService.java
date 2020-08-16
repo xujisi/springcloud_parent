@@ -20,10 +20,12 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 服务层
+ * 活动API Service层
  *
- * @author Administrator
+ * @author: 许集思
+ * @date: 2020/5/24 16:25
  */
+
 @Service
 public class GatheringService {
 
@@ -34,23 +36,26 @@ public class GatheringService {
     private IdWorker idWorker;
 
     /**
-     * 查询全部列表
+     * 查询所有活动
      *
-     * @return
-     */
+     * @param
+     * @return java.util.List<com.springcloud.gathering.pojo.Gathering>
+     * @author: 许集思
+     * @date: 2020/5/24 16:25
+     **/
     public List<Gathering> findAll() {
         return gatheringDao.findAll();
     }
 
 
     /**
-     * 条件查询+分页
+     * 分页+多条件查询活动
      *
-     * @param whereMap
-     * @param page
-     * @param size
-     * @return
-     */
+     * @param whereMap,@param page,@param size
+     * @return org.springframework.data.domain.Page<com.springcloud.gathering.pojo.Gathering>
+     * @author: 许集思
+     * @date: 2020/5/24 16:25
+     **/
     public Page<Gathering> findSearch(Map whereMap, int page, int size) {
         Specification<Gathering> specification = createSpecification(whereMap);
         PageRequest pageRequest = PageRequest.of(page - 1, size);
@@ -59,22 +64,26 @@ public class GatheringService {
 
 
     /**
-     * 条件查询
+     * 根据条件查询活动
      *
      * @param whereMap
-     * @return
-     */
+     * @return java.util.List<com.springcloud.gathering.pojo.Gathering>
+     * @author: 许集思
+     * @date: 2020/5/24 16:25
+     **/
     public List<Gathering> findSearch(Map whereMap) {
         Specification<Gathering> specification = createSpecification(whereMap);
         return gatheringDao.findAll(specification);
     }
 
     /**
-     * 根据ID查询实体
+     * 根据ID查询所有活动
      *
      * @param id
-     * @return
-     */
+     * @return com.springcloud.gathering.pojo.Gathering
+     * @author: 许集思
+     * @date: 2020/5/24 16:25
+     **/
     @Cacheable(value = "gathering", key = "#id")
     public Gathering findById(String id) {
 
@@ -82,30 +91,39 @@ public class GatheringService {
     }
 
     /**
-     * 增加
+     * 新增活动
      *
      * @param gathering
-     */
+     * @return void
+     * @author: 许集思
+     * @date: 2020/5/24 16:25
+     **/
     public void add(Gathering gathering) {
         gathering.setId(idWorker.nextId() + "");
         gatheringDao.save(gathering);
     }
 
     /**
-     * 修改
+     * 修改活动
      *
      * @param gathering
-     */
+     * @return void
+     * @author: 许集思
+     * @date: 2020/5/24 16:25
+     **/
     @CacheEvict(value = "gathering", key = "#gathering.id")
     public void update(Gathering gathering) {
         gatheringDao.save(gathering);
     }
 
     /**
-     * 删除
+     * 删除活动
      *
      * @param id
-     */
+     * @return void
+     * @author: 许集思
+     * @date: 2020/5/24 16:25
+     **/
     @CacheEvict(value = "gathering", key = "#id")
     public void deleteById(String id) {
         gatheringDao.deleteById(id);

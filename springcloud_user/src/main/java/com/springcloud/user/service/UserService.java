@@ -55,8 +55,13 @@ public class UserService {
 
 
     /**
-     * 登录普通用户
-     */
+     * 用户登录
+     *
+     * @param mobile,@param password
+     * @return com.springcloud.user.pojo.User
+     * @author: 许集思
+     * @date: 2020/5/24 17:11
+     **/
     public User login(String mobile, String password) {
         User user = userDao.findByMobile(mobile);
         if (user != null && encoder.matches(password, user.getPassword())) {
@@ -68,23 +73,26 @@ public class UserService {
 
 
     /**
-     * 查询全部列表
+     * 查询全部用户
      *
-     * @return
-     */
+     * @param
+     * @return java.util.List<com.springcloud.user.pojo.User>
+     * @author: 许集思
+     * @date: 2020/5/24 17:09
+     **/
     public List<User> findAll() {
         return userDao.findAll();
     }
 
 
     /**
-     * 条件查询+分页
+     * 分页+多条件查询User用户
      *
-     * @param whereMap
-     * @param page
-     * @param size
-     * @return
-     */
+     * @param whereMap,@param page,@param size
+     * @return org.springframework.data.domain.Page<com.springcloud.user.pojo.User>
+     * @author: 许集思
+     * @date: 2020/5/24 17:09
+     **/
     public Page<User> findSearch(Map whereMap, int page, int size) {
         Specification<User> specification = createSpecification(whereMap);
         PageRequest pageRequest = PageRequest.of(page - 1, size);
@@ -93,31 +101,38 @@ public class UserService {
 
 
     /**
-     * 条件查询
+     * 根据条件查询User用户
      *
      * @param whereMap
-     * @return
-     */
+     * @return java.util.List<com.springcloud.user.pojo.User>
+     * @author: 许集思
+     * @date: 2020/5/24 17:09
+     **/
     public List<User> findSearch(Map whereMap) {
         Specification<User> specification = createSpecification(whereMap);
         return userDao.findAll(specification);
     }
 
     /**
-     * 根据ID查询实体
+     * 根据ID查询User用户
      *
      * @param id
-     * @return
-     */
+     * @return com.springcloud.user.pojo.User
+     * @author: 许集思
+     * @date: 2020/5/24 17:09
+     **/
     public User findById(String id) {
         return userDao.findById(id).get();
     }
 
     /**
-     * 增加
+     * 注册User用户
      *
      * @param user
-     */
+     * @return void
+     * @author: 许集思
+     * @date: 2020/5/24 17:09
+     **/
     public void add(User user) {
         user.setId(idWorker.nextId() + "");
         //密码加密
@@ -133,19 +148,25 @@ public class UserService {
     }
 
     /**
-     * 修改
+     * 修改User用户
      *
      * @param user
-     */
+     * @return void
+     * @author: 许集思
+     * @date: 2020/5/24 17:09
+     **/
     public void update(User user) {
         userDao.save(user);
     }
 
     /**
-     * 删除 (必须有管理员权限才可以删除)
+     * 删除User用户(必须有管理员权限才可以删除)
      *
      * @param id
-     */
+     * @return void
+     * @author: 许集思
+     * @date: 2020/5/24 17:09
+     **/
     public void deleteById(String id) {
         String token = (String) request.getAttribute("claims_admin");
         if (StringUtils.isEmpty(token)) {
@@ -213,7 +234,12 @@ public class UserService {
 
     /**
      * 发送短信验证码
-     */
+     *
+     * @param mobile
+     * @return void
+     * @author: 许集思
+     * @date: 2020/5/24 17:10
+     **/
     public void sendSms(String mobile) {
         //产生6位随机数
         String checkCode = RandomStringUtils.randomNumeric(6);
